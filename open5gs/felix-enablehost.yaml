@@ -1,0 +1,23 @@
+#enable defaultEndpointToHostAction to allow traffic from the host
+
+apiVersion: projectcalico.org/v3
+kind: FelixConfiguration
+metadata:
+  annotations:
+    operator.tigera.io/bpfEnabled: "false"
+#  creationTimestamp: "2024-06-26T13:58:55Z"
+  generation: 2
+  name: default
+  resourceVersion: "939"
+#  uid: c1feb029-e212-499c-8d46-582ace464e0b
+spec:
+  bpfConnectTimeLoadBalancing: TCP
+  bpfEnabled: false
+  bpfHostNetworkedNATWithoutCTLB: Enabled
+  bpfLogLevel: ""
+  floatingIPs: Disabled
+  healthPort: 9099
+  logSeverityScreen: Info
+  reportingInterval: 0s
+  vxlanVNI: 4096
+  defaultEndpointToHostAction: Accept

@@ -1,0 +1,41 @@
+- chains for ueransim-gnb-ues pod interface eth0 (cali9cac9a77bbd on the host)
+
+Chain cali-from-wl-dispatch-9 (1 references)
+target     prot opt source               destination         
+cali-fw-cali94cf820ec4a  all  --  anywhere             anywhere            [goto]  /* cali:29iY3oJvhcNUNX0l */
+cali-fw-cali9cac9a77bbd  all  --  anywhere             anywhere            [goto]  /* cali:ksL0Psi76mgJt0rm */
+DROP       all  --  anywhere             anywhere             /* cali:LFJgB8Dn95pRO6bw */ /* Unknown interface */
+
+
+Chain cali-fw-cali9cac9a77bbd (1 references)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             anywhere             /* cali:MHv0ynVpEKHklRhc */ ctstate RELATED,ESTABLISHED
+DROP       all  --  anywhere             anywhere             /* cali:h4HTiQsQrPPaROb_ */ ctstate INVALID
+MARK       all  --  anywhere             anywhere             /* cali:h2P5L9yQIrsuUonY */ MARK and 0xfffcffff
+DROP       udp  --  anywhere             anywhere             /* cali:QikuxU-UWZIt1NBU */ /* Drop VXLAN encapped packets originating in workloads */ multiport dports 4789
+DROP       ipencap--  anywhere             anywhere             /* cali:Mc5gWvhUKtGB7L5V */ /* Drop IPinIP encapped packets originating in workloads */
+cali-pro-kns.default  all  --  anywhere             anywhere             /* cali:wnuY68Izi080iNed */
+RETURN     all  --  anywhere             anywhere             /* cali:506qfOcdr3Hhdshh */ /* Return if profile accepted */
+cali-pro-ksa.default.default  all  --  anywhere             anywhere             /* cali:Cf_rZ-kGI6434jGR */
+RETURN     all  --  anywhere             anywhere             /* cali:xCb5Oi3jgtFYjnr6 */ /* Return if profile accepted */
+DROP       all  --  anywhere             anywhere             /* cali:Pf33G8CehxjNLujU */ /* Drop if no profiles matched */
+
+
+Chain cali-to-wl-dispatch-9 (1 references)
+target     prot opt source               destination         
+cali-tw-cali94cf820ec4a  all  --  anywhere             anywhere            [goto]  /* cali:5m8utCp0AclpqLPH */
+cali-tw-cali9cac9a77bbd  all  --  anywhere             anywhere            [goto]  /* cali:ya1TN6PuQe7pB9MS */
+DROP       all  --  anywhere             anywhere             /* cali:dMjEIhaAVlS4c5nf */ /* Unknown interface */
+
+
+Chain cali-tw-cali9cac9a77bbd (1 references)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             anywhere             /* cali:QEiGsKV1HbjBAvKG */ ctstate RELATED,ESTABLISHED
+DROP       all  --  anywhere             anywhere             /* cali:FvgQ5_vk1oq_Ymv1 */ ctstate INVALID
+MARK       all  --  anywhere             anywhere             /* cali:qd-53QTFL9N5I0fI */ MARK and 0xfffcffff
+cali-pri-kns.default  all  --  anywhere             anywhere             /* cali:nLeAxPi9uzxQNSkL */
+RETURN     all  --  anywhere             anywhere             /* cali:jbPqk8lx_y_ppiHh */ /* Return if profile accepted */
+cali-pri-ksa.default.default  all  --  anywhere             anywhere             /* cali:kpRbv-WLNb-Rea-4 */
+RETURN     all  --  anywhere             anywhere             /* cali:EZ1I7lBrOuIgxInw */ /* Return if profile accepted */
+DROP       all  --  anywhere             anywhere             /* cali:zfWoYi611wPL7nvu */ /* Drop if no profiles matched */
+

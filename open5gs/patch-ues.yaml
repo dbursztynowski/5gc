@@ -1,0 +1,16 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: netshoot
+        image: nicolaka/netshoot
+        imagePullPolicy: Always
+        command: ["sh", "-c", "tail -f /dev/null"]
+        securityContext:
+#          privileged: true
+          capabilities:
+            add: ["NET_ADMIN"]
+#            add: ["NET_ADMIN","NET_RAW"]
+#        command: ["/bin/bash"]
+#        args: ["-c", "while true; do ping localhost; sleep 60;done"]
+

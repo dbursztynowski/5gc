@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tests
+  
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: inplacedemo
+  namespace: tests
+spec:
+  containers:
+  - name: inplacedemo
+    image: alpine
+    imagePullPolicy: IfNotPresent
+    command: ["tail", "-f", "/dev/null"]
+    resizePolicy:
+    - resourceName: "memory"
+      restartPolicy: "RestartContainer"
+    resources:
+      limits:
+        cpu: 2
+        memory: "1Gi"
+      requests:
+        cpu: 1
+        memory: "500Mi"
+        
+# kubectl patch -n tests pod inplacedemo --patch '{"spec":{"containers":[{"name":"inplacedemo", "resources":{"limits":{"cpu":"3"}}}]}}'
