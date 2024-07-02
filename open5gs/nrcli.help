@@ -1,8 +1,11 @@
 ***********************************************
-UERANSIM usage
+UERANSIM usage - including nr-binder
 sources:
 https://github.com/aligungr/UERANSIM/wiki/Usage
 ***********************************************
+RUNNING nr-cli
+===============================================
+
 - enter selected pod
 $ kubectl -n default exec -ti deployment/ueransim-gnb-ues -- /bin/bash
 or
@@ -30,6 +33,13 @@ chmod 777 /usr/local/bin/nr-cli
 /usr/local/bin/nr-cli <gnb-name>
 - show commands available for gnb
 /usr/local/bin/nr-cli commands
+
+======================================
+RUNNING nr-binder
+
+$ ./nr-binder {PDU-SESSION-IP-ADDRESS} {COMMAND} {ARGS}
+$ ./nr-binder 10.45.0.2 curl google.com
+$ ./nr-binder 10.45.0.2 firefox
 
 
 
