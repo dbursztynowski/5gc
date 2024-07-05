@@ -136,4 +136,8 @@ iptables -A FORWARD -j ACCEPT -m comment --comment "Accept all forwarded"
 iptables -A INPUT -j ACCEPT -m comment --comment "Accept all incoming"
 iptables -A OUTPUT -j ACCEPT -m comment --comment "Accept all outgoing"
 
+============================================
+- Using ctr (containerd cli tool)
+https://labs.iximiuz.com/courses/containerd-cli/ctr/image-management#what-is-ctr
+https://labs.iximiuz.com/courses/containerd-cli/ctr/image-management#basics
 
