@@ -70,10 +70,10 @@ $ kubectl -n default exec -ti deployment/ueransim-gnb-ues -- /bin/bash
 # /usr/local/bin/nr-binder 10.45.0.2 curl http://www.google.com
 
 can run multiple instances of nr-binder (multiple streams) in parallel
-to verify, login to ueransim-gnb-ues pod from two separate terminals nad run for different TUN interfaces, e.g.:
-(10.45.0.2, 10.45.0.5 are IP addresses of the TUNS: # ip addr
-/usr/local/bin/nr-binder 10.45.0.2 ping wp.pl
-/usr/local/bin/nr-binder 10.45.0.5 ping wp.pl
+to verify, login to ueransim-gnb-ues pod from two separate terminals and run for different TUN interfaces, e.g.:
+# /usr/local/bin/nr-binder 10.45.0.2 ping wp.pl
+# /usr/local/bin/nr-binder 10.45.0.5 ping wp.pl
+(10.45.0.2, 10.45.0.5 are IP addresses of the TUNs involved: # ip addr
 ```
 
 You can also deploy more ues connected to this gnodeb with gradiant/ueransim-ues chart:
