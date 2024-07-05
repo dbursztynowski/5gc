@@ -60,7 +60,19 @@ Example:
 ```
 ping -I uesimtun0 gradiant.org
 traceroute -i uesimtun0 gradiant.org
-curl --interface uesimtun0 https://www.gradiant.org/ 
+curl --interface uesimtun0 https://www.gradiant.org/
+
+```
+run using nr-binder utility
+# su   <=== to run as root
+# chmod 755 /usr/local/bin/nr-binder
+# /usr/local/bin/nr-binder 10.45.0.2 curl http://www.google.com
+
+can use multiple instances (multiple streams) in parallel
+to verify, login to ueransim-gnb-ues pod from two separate terminals nad run for different TUN interfaces, e.g.:
+(10.45.0.2, 10.45.0.5 are IP addresses of the TUNS: # ip addr
+/usr/local/bin/nr-binder 10.45.0.2 ping wp.pl
+/usr/local/bin/nr-binder 10.45.0.5 ping wp.pl
 ```
 
 You can also deploy more ues connected to this gnodeb with gradiant/ueransim-ues chart:
