@@ -64,7 +64,8 @@ curl --interface uesimtun0 https://www.gradiant.org/
 
 ```
 generate traffic using nr-binder utility
-# su   <=== to run as root
+$ kubectl -n default exec -ti deployment/ueransim-gnb-ues -- /bin/bash
+# su   <=== to run as root if not already
 # chmod 755 /usr/local/bin/nr-binder
 # /usr/local/bin/nr-binder 10.45.0.2 curl http://www.google.com
 
