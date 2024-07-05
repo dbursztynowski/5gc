@@ -68,7 +68,7 @@ run using nr-binder utility
 # chmod 755 /usr/local/bin/nr-binder
 # /usr/local/bin/nr-binder 10.45.0.2 curl http://www.google.com
 
-can use multiple instances (multiple streams) in parallel
+can run multiple instances of nr-binder (multiple streams) in parallel
 to verify, login to ueransim-gnb-ues pod from two separate terminals nad run for different TUN interfaces, e.g.:
 (10.45.0.2, 10.45.0.5 are IP addresses of the TUNS: # ip addr
 /usr/local/bin/nr-binder 10.45.0.2 ping wp.pl
