@@ -63,7 +63,7 @@ traceroute -i uesimtun0 gradiant.org
 curl --interface uesimtun0 https://www.gradiant.org/
 
 ```
-run using nr-binder utility
+generate traffic using nr-binder utility
 # su   <=== to run as root
 # chmod 755 /usr/local/bin/nr-binder
 # /usr/local/bin/nr-binder 10.45.0.2 curl http://www.google.com
