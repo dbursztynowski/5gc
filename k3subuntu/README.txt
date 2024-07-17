@@ -10,6 +10,11 @@ Note: to enable external access to the API (e.g., for kubectl) when server IP ad
   ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
        https://docs.k3s.io/installation/configuration#registration-options-for-the-k3s-server
 
+- uninstall server: run on server
+$ /usr/local/bin/k3s-uninstall.sh
+- uninstall agents: run on agents
+$ /usr/local/bin/k3s-agent-uninstall.sh
+
 ******************************
 CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
