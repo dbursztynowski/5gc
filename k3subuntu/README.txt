@@ -1,10 +1,16 @@
 - install k3s on ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-cluster-on-ubuntu
+(multinode k3s with Calico) https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/multi-node-install
 
+- simplest (no calico, etc.)
 # $ curl -sfL https://get.k3s.io  | INSTALL_K3S_EXEC="--kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
 
-- install with appropriate settings (no flannel and traefik, enable InPlacePodVerticalScaling)
+- install control node with appropriate settings (no flannel and traefik, enable InPlacePodVerticalScaling)
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
+
+- install agent(s)
+$ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=nodetoken sh -
+  where K3S_TOKEN which is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
 
 Note: to enable external access to the API (e.g., for kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address within the cluster (e.g., when the server is exposed by floating IP in OpenStack) add additional option --tls-san=<floating-ip-address> in the part INSTALL_K3S_EXEC="...".
   ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
