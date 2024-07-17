@@ -6,6 +6,8 @@ https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-clu
 - install with appropriate settings (no flannel and traefik, enable InPlacePodVerticalScaling)
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
 
+Note: add additional option --tls-san=<floating-ip-address> to enable external access to the API (e.g., for kubectl) when <floating-ip-address> is the server IP address visible externally (e.g., when server is exposed by floating IP in OpenStack)
+
 ******************************
 CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
