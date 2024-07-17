@@ -8,6 +8,7 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 
 Note: to enable external access to the API (e.g., for kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address within the cluster (e.g., when the server is exposed by floating IP in OpenStack) add additional option --tls-san=<floating-ip-address> in the part INSTALL_K3S_EXEC="...". 
 
+
 ******************************
 CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
