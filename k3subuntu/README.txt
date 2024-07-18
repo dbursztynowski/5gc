@@ -49,8 +49,10 @@ spec:
   calicoNetwork:
     ipPools:
     - name: default-ipv4-ippool
+      # blocks are smaller chunks that are associated with a particular node in the cluster. Each node in the cluster can
+      # have one or more blocks associated with it. Here, the pool will comprise 8 blocks each containing 64 addresses.
       blockSize: 26
-      # this cidr MUST be thesame as the one used during k3s installatio in argument --cluster-cidr=10.42.0.0/16
+      # this cidr MUST be the same as the one used during k3s installatio in argument --cluster-cidr=10.42.0.0/16
       cidr: 10.42.0.0/16
       encapsulation: VXLANCrossSubnet
       natOutgoing: Enabled
