@@ -12,7 +12,7 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=nodetoken sh -
   where K3S_TOKEN which is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
 
-Note: to enable external access to the API (e.g., for kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address within the cluster (e.g., when the server is exposed by floating IP in OpenStack) add additional option --tls-san=<floating-ip-address> in the part INSTALL_K3S_EXEC="...".
+Note: to enable external access to the API (e.g., for kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address within the cluster (e.g., when the server is exposed by floating IP in OpenStack) add additional option --tls-san=<floating-ip-address> in the part INSTALL_K3S_EXEC="...". This will make x509 certificate for this address become valid.
   ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
        https://docs.k3s.io/installation/configuration#registration-options-for-the-k3s-server
 
