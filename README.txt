@@ -7,5 +7,20 @@ $ minikube start --kubernetes-version=v1.30.0 --driver=docker --container-runtim
   kubectl get --raw /metrics | grep kubernetes_feature_enabled
   - setting feature gate in minikube (this recreates the cluster from scratch - deletes existing workloads)
   minikube start --feature-gates=InPlacePodVerticalScaling=true
+
+==============================================
+- install kube-prometheus
+https://github.com/prometheus-operator/kube-prometheus
+
+$ kubectl apply --server-side -f manifests/setup
+$ kubectl wait \
+	--for condition=Established \
+	--all CustomResourceDefinition \
+	--namespace=monitoring
+$ kubectl apply -f manifests/
+
+- tear down the stack
+$ kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup
+
   
   
