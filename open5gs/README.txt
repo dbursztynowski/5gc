@@ -1,3 +1,7 @@
+- SOURCES:
+https://github.com/Gradiant/5g-charts/tree/main/charts
+******************************************************
+
 - jesli problemy z mongodb to:
   $ cat /proc/cpuinfo | grep avx
   jesli nie ma avx, to zmienic obraz mongodb w deploymencie na:
