@@ -1,10 +1,27 @@
 *******************
+(for Virtual Box)
 PREPARE UBUNTU 22.04
-- disable Wayland
+
+- enable terminal
+  https://www.youtube.com/watch?v=NvTMQBxGqDw
+Settings -> Region and language -> change Language=English(UK) -> Reboot
+
+- add user to the sudo group
+$ su -
+# sudo usermod -aG sudo <username>
+# visudo ==> add:
+  <username> ALL=(ALL) NOPASSWD:ALL
+# exuit
+
+- disable Wayland (if you experience problems with the display)
 https://linuxconfig.org/how-to-enable-disable-wayland-on-ubuntu-22-04-desktop
 $ sudo nano /etc/gdm3/custom.conf
   WaylandEnable=false
 $ sudo systemctl restart gdm3
+
+- enable VBoxGuestAdditions
+VM -> Devices -> Mount image with Guest Additions -> cd /media/ubuntu/VBox_GAs_xyz (xyz according to your env) -> 
+   sudo VBoxLinuxAdditions.run -> VM 
 
 - enable IP forwarding
   https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
