@@ -25,8 +25,9 @@ VM -> Devices -> Mount image with Guest Additions -> cd /media/ubuntu/VBox_GAs_x
 
 - enable IP forwarding
   https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
+  check if required
 $ sudo sysctl net.ipv4.ip_forward
-net.ipv4.ip_forward = 0
+net.ipv4.ip_forward = 0   => required if 0
 $ sudo nano /etc/sysctl.conf
   net.ipv4.ip_forward = 1
 $ sudo sysctl -p
