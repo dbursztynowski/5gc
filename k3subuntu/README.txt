@@ -1,3 +1,25 @@
+*******************
+PREPARE UBUNTU 22.04
+- disable Wayland
+https://linuxconfig.org/how-to-enable-disable-wayland-on-ubuntu-22-04-desktop
+$ sudo nano /etc/gdm3/custom.conf
+  WaylandEnable=false
+$ sudo systemctl restart gdm3
+
+- enable IP forwarding
+  https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux
+$ sudo sysctl net.ipv4.ip_forward
+net.ipv4.ip_forward = 0
+$ sudo nano /etc/sysctl.conf
+  net.ipv4.ip_forward = 1
+$ sudo sysctl -p
+
+$ sudo apt update
+$ sudo apt upgrade
+
+*******************
+INSTALL KUBERNETES
+
 - install k3s on ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-cluster-on-ubuntu
 (multinode k3s with Calico) https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/multi-node-install
