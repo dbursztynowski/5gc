@@ -7,7 +7,7 @@ $ sudo nano /etc/gdm3/custom.conf
 $ sudo systemctl restart gdm3
 
 - enable IP forwarding
-  https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux
+  https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
 $ sudo sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 0
 $ sudo nano /etc/sysctl.conf
