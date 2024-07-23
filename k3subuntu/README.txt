@@ -35,6 +35,8 @@ $ sudo sysctl -p
 $ sudo apt update
 $ sudo apt upgrade
 
+$ sudo apt install git
+
 *******************
 INSTALL KUBERNETES
 
