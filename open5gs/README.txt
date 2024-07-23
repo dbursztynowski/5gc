@@ -26,7 +26,7 @@ image:
      tag: 4.4.15-debian-10-r8
 # <== end pf "change mongodb image"
     
-  - install open5gs (decide if defauult or customized user set is to be created)
+  - install open5gs (decide if default or customized user set is to be created)
 $ helm install open5gs ./open5gs --version 2.2.0 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
   - for custom UE list (update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml to deploy UERANSIM)
 $ helm install open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
