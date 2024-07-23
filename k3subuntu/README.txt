@@ -38,6 +38,16 @@ $ sudo apt upgrade
 $ sudo apt install git
 
 *******************
+
+OpenStack
+- to lunch instance from image with password authentication enabled (here pwd=ubuntu)
+  - insert the following into Configuration/Customization script pane in OpenStack Dashboard
+#cloud-config
+password: <mypasswd>
+chpasswd: { expire: False }
+ssh_pwauth: True
+
+*******************
 INSTALL KUBERNETES
 
 - install k3s on ubuntu
