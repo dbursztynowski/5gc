@@ -37,6 +37,11 @@ $ sudo apt upgrade
 
 $ sudo apt install git
 
+- for any case (e.g. scp copy) enable PasswordAuthentication
+$ sudo nano /etc/ssh/sshd_config
+  PasswordAuthentication yes
+$ sudo service ssh restart
+
 *******************
 
 OpenStack
@@ -66,8 +71,9 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
        https://docs.k3s.io/installation/configuration#registration-options-for-the-k3s-server
 
 - install agent(s)
-$ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=nodetoken sh -
-  where K3S_TOKEN which is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
+$ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
+  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
+  (or one can copy-paste the token from the file directly into the command)
 
 - uninstall server: run on server
 $ /usr/local/bin/k3s-uninstall.sh
