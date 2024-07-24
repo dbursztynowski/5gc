@@ -43,7 +43,7 @@ OpenStack
 - to lunch instance from image with password authentication enabled (here pwd=ubuntu)
   - insert the following into Configuration/Customization script pane in OpenStack Dashboard
 #cloud-config
-password: <mypasswd>
+password: t6ygfr5
 chpasswd: { expire: False }
 ssh_pwauth: True
 
