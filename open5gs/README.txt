@@ -8,8 +8,11 @@ https://github.com/Gradiant/5g-charts/tree/main/charts
     image: docker.io/bitnami/mongodb:4.4.15-debian-10-r8
     
 ============================================
-- install Open5GS + UERANSIM + correct mongodb image (quick version, to be improved later by changing the elm chart)
+- INSTALL Open5GS + UERANSIM + correct mongodb image (quick version, to be improved later by changing the elm chart)
   below, it is assummed that avx instruction set extension is not supported
+
+============
+- check mongodb compatibility and correct if needed
 
 # ==> if $ cat /proc/cpuinfo | grep avx returns blank output on your host machine (so your host does not support avx
       instruction set extension ) then you have to change the mongodb image to be used
@@ -25,12 +28,18 @@ image:
      repository: bitnami/mongodb
      tag: 4.4.15-debian-10-r8
 # <== end pf "change mongodb image"
-    
+
+===================
+OPEN5GS
+-------------------
   - install open5gs (decide if default or customized user set is to be created)
 $ helm install open5gs ./open5gs --version 2.2.0 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
   - for custom UE list (update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml to deploy UERANSIM)
 $ helm install open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
 
+===================
+Basic UERANSIM
+-------------------
 - install UERANSIM
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
   - for custom UE list
@@ -46,11 +55,18 @@ $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --v
   $ kubectl delete deployments open5gs-populate
   $ kubectl apply -f open5gs-populate-adjust.yaml
 
---------------------------------------------
+====================
+UERANSIM placed on selected node/node type
+--------------------
+$ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
+$ mkdir ueransim-place
+$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-place
+- update templates and values.yaml for both uearansim pods
+
+
+==========================================
 Check UE's connectivity
-
 ---
-
 You have also deployed 2 ues. You can enter ues terminal with:
 
 ```
