@@ -59,8 +59,8 @@ $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --v
 UERANSIM placed on selected node/node type
 --------------------
 $ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
-$ mkdir ueransim-place
-$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-place
+$ mkdir ueransim-gnb-place
+$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
 - update templates and values.yaml for both uearansim pods
 
 
