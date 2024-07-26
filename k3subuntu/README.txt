@@ -88,7 +88,8 @@ $ /usr/local/bin/k3s-uninstall.sh
 $ /usr/local/bin/k3s-agent-uninstall.sh
 
 ******************************
-Note: in case of mongodb connectivity problems maybe flannel with IPSec backend can be a solution for CNI (still to be confirmed/checked)
+Note1: in case of mongodb connectivity problems maybe flannel with IPSec backend can be a solution for CNI (still to be confirmed/checked)
+Note2: on SCTP support in cilium: https://github.com/cilium/cilium/issues/20490
 
 CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
