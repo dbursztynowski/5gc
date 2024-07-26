@@ -2,17 +2,11 @@
 https://github.com/Gradiant/5g-charts/tree/main/charts
 ******************************************************
 
-- jesli problemy z mongodb to:
-  $ cat /proc/cpuinfo | grep avx
-  jesli nie ma avx, to zmienic obraz mongodb w deploymencie na:
-    image: docker.io/bitnami/mongodb:4.4.15-debian-10-r8
-    
-============================================
 - INSTALL Open5GS + UERANSIM + correct mongodb image (quick version, to be improved later by changing the elm chart)
   below, it is assummed that avx instruction set extension is not supported
 
-============
-- check mongodb compatibility and correct if needed
+==========================================
+- check mongodb compatibility and correct if needed (see above)
 
 # ==> if $ cat /proc/cpuinfo | grep avx returns blank output on your host machine (so your host does not support avx
       instruction set extension ) then you have to change the mongodb image to be used
@@ -29,17 +23,42 @@ image:
      tag: 4.4.15-debian-10-r8
 # <== end pf "change mongodb image"
 
-===================
+===========================================
 OPEN5GS
--------------------
+-------------------------------------------
   - install open5gs (decide if default or customized user set is to be created)
 $ helm install open5gs ./open5gs --version 2.2.0 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
   - for custom UE list (update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml to deploy UERANSIM)
 $ helm install open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
 
-===================
+-------------------------------------------
+Correcting OPEN5GS mongodb probes if mongodb crashes
+
+- accordig to https://github.com/bitnami/charts/issues/10264 (other tweaks also presented there)
+  Yet other tweaks possible
+  - https://github.com/syndikat7/mongodb-rust-ping
+  - or even replacement of mongodb possible but needs changing the charts:
+    https://github.com/FerretDB/FerretDB
+
+- (in open5gs/charts/mongodb/values.yaml change)
+# startupProbe.enabled must be false (that is the default)
+customStartupProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 30
+  exec:
+    command:
+      - sh
+      - -c
+      - |
+        mongosh --eval 'disableTelemetry()'
+        /bitnami/scripts/startup-probe.sh
+
+===========================================
 Basic UERANSIM
--------------------
+-------------------------------------------
 - install UERANSIM
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
   - for custom UE list
@@ -55,9 +74,9 @@ $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --v
   $ kubectl delete deployments open5gs-populate
   $ kubectl apply -f open5gs-populate-adjust.yaml
 
-====================
+==========================================
 UERANSIM placed on selected node/node type
---------------------
+------------------------------------------
 $ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
 $ mkdir ueransim-gnb-place
 $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
@@ -66,7 +85,7 @@ $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
 
 ==========================================
 Check UE's connectivity
----
+------------------------------------------
 You have also deployed 2 ues. You can enter ues terminal with:
 
 ```
