@@ -88,6 +88,8 @@ $ /usr/local/bin/k3s-uninstall.sh
 $ /usr/local/bin/k3s-agent-uninstall.sh
 
 ******************************
+Note: in case of mongodb connectivity problems maybe flannel can be a solution for CNI (still to be confirmed/checked)
+
 CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
 
