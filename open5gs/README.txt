@@ -90,8 +90,11 @@ $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
 - update templates and values.yaml for both uearansim pods
 
   nodeSelector:
-    db.o5gs: ran-network
-   (db.o5gs: core-network)
+    db.5gnet/workload: ran-functions
+   (db.5gnet/workload: core-functions)
+
+- assign label(s) to node(s)
+$ kubectl label nodes k3sworker db.5gnet/workload=ran-functions
 
 - install uearnsim
 $ helm install ueransim-gnb ./ueransim-gnb-place/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
