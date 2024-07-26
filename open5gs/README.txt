@@ -37,6 +37,8 @@ $ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.
 -------------------------------------------
 Correcting OPEN5GS mongodb probes if mongodb crashes
 
+Note: hints for Helm: https://www.alibabacloud.com/blog/helm-charts-and-template-basics---part-2_595490
+
 - accordig to https://github.com/bitnami/charts/issues/10264 (other tweaks also presented there)
   Yet other tweaks possible
   - https://github.com/syndikat7/mongodb-rust-ping
