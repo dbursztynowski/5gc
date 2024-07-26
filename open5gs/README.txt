@@ -66,6 +66,7 @@ $ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.
 
 ===========================================
 Basic UERANSIM
+Note: an alternative to ueransim is https://github.com/my5G/my5G-RANTester/wiki/Usage
 -------------------------------------------
 - install UERANSIM
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
