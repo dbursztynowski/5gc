@@ -6,7 +6,7 @@ https://github.com/Gradiant/5g-charts/tree/main/charts
   below, it is assummed that avx instruction set extension is not supported
 
 ==========================================
-- check mongodb compatibility and correct if needed (see above)
+- check mongodb compatibility and correct if needed (fallback to lower release)
 
 # ==> if $ cat /proc/cpuinfo | grep avx returns blank output on your host machine (so your host does not support avx
       instruction set extension ) then you have to change the mongodb image to be used
