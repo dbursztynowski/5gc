@@ -31,6 +31,9 @@ $ helm install open5gs ./open5gs --version 2.2.0 --values https://gradiant.githu
   - for custom UE list (update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml to deploy UERANSIM)
 $ helm install open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
 
+- testing (dry run)
+$ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
+
 -------------------------------------------
 Correcting OPEN5GS mongodb probes if mongodb crashes
 
@@ -55,6 +58,9 @@ customStartupProbe:
       - |
         mongosh --eval 'disableTelemetry()'
         /bitnami/scripts/startup-probe.sh
+
+- testing (dry run)
+$ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
 
 ===========================================
 Basic UERANSIM
@@ -82,6 +88,9 @@ $ mkdir ueransim-gnb-place
 $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
 - update templates and values.yaml for both uearansim pods
 
+  nodeSelector:
+    db.o5gs: ran-network
+   (db.o5gs: core-network)
 
 ==========================================
 Check UE's connectivity
