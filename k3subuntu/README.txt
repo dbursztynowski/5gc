@@ -52,6 +52,8 @@ password: t6ygfr5
 chpasswd: { expire: False }
 ssh_pwauth: True
 
+- more on this: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init#setting_up_cloud_init
+
 *******************
 INSTALL KUBERNETES
 
