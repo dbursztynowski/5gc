@@ -72,7 +72,8 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
   ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
        https://docs.k3s.io/installation/configuration#registration-options-for-the-k3s-server
 
-- CTP enablement:
+- SCTP enablement in the cluster:
+  ------------------------------
   feature-gates: SCTPSupport=true => --kube-apiserver-arg=feature-gates=SCTPSupport=true
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true --kube-apiserver-arg=feature-gates=SCTPSupport=true --tls-san=10.254.186.64" sh -
 
