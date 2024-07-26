@@ -86,11 +86,15 @@ UERANSIM placed on selected node/node type
 $ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
 $ mkdir ueransim-gnb-place
 $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
+
 - update templates and values.yaml for both uearansim pods
 
   nodeSelector:
     db.o5gs: ran-network
    (db.o5gs: core-network)
+
+- install uearnsim
+$ helm install ueransim-gnb ./ueransim-gnb-place/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 ==========================================
 Check UE's connectivity
