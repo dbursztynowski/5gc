@@ -1,7 +1,12 @@
-*******************
-(for Virtual Box)
+************************************************************************
+Below, k3s cluster is installed.
+For k8s cluster on multinode see, e.g., https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
+************************************************************************
+
 PREPARE UBUNTU 22.04
 
+for VirtualBox only
+=========================================
 - enable terminal
   https://www.youtube.com/watch?v=NvTMQBxGqDw
 Settings -> Region and language -> change Language=English(UK) -> Reboot
@@ -23,8 +28,8 @@ $ sudo systemctl restart gdm3
 VM -> Devices -> Mount image with Guest Additions -> cd /media/ubuntu/VBox_GAs_xyz (xyz according to your env) -> 
    sudo VBoxLinuxAdditions.run -> VM
 
-**************************
-Prepare reamining (all releases(
+Prepare reamining stuff (all releases)
+======================================
 
 - enable IP forwarding
   https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
@@ -45,9 +50,8 @@ $ sudo nano /etc/ssh/sshd_config
   PasswordAuthentication yes
 $ sudo service ssh restart
 
-*******************
-
-OpenStack
+if OpenStack (optional)
+=====================================
 - to lunch instance from image with password authentication enabled (here pwd=ubuntu)
   - insert the following into Configuration/Customization script pane in OpenStack Dashboard
     ubuntu is the default user on Ubuntu 
@@ -58,7 +62,7 @@ ssh_pwauth: True
 
 - more on this: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init#setting_up_cloud_init
 
-*******************
+*****************************************
 INSTALL KUBERNETES
 
 - install k3s on ubuntu
@@ -79,6 +83,10 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 - check status
 $ systemctl status k3s.service
 
+- copy k3s.yaml to ~HOME/.kube/config and change ownership for current user
+$ sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 - install agent(s)
   on master
 $ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@<agent-node-address>:/home/ubuntu/node-token
@@ -95,11 +103,11 @@ $ /usr/local/bin/k3s-uninstall.sh
 $ /usr/local/bin/k3s-agent-uninstall.sh
 
 ******************************
+INSTALL CALICO
+https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
+
 Note1: in case of mongodb connectivity problems maybe flannel with IPSec backend can be a solution for CNI (still to be confirmed/checked)
 Note2: on SCTP support in cilium: https://github.com/cilium/cilium/issues/20490
-
-CALICO
-https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
 
 - install calico operator and custom resources
 $ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
@@ -110,7 +118,7 @@ $ kubectl create -f calico-custom-resources.yaml
 $ watch kubectl get pods --all-namespaces
 $ kubectl get nodes
 
-Plik calico-custom-resources.yaml:
+File calico-custom-resources.yaml:
 ----------------------------------
 # https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
 # This section includes base Calico installation configuration.
