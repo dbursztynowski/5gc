@@ -1,0 +1,75 @@
+Pods failing to connect to mongodb
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl logs open5gs-pcf-6d8dddd9c7-q9brc
+Open5GS daemon v2.7.0
+
+07/29 17:10:57.136: [app] INFO: Configuration: '/opt/open5gs/etc/open5gs/pcf.yaml' (../lib/app/ogs-init.c:130)
+07/29 17:11:07.152: [dbi] WARNING: Failed to connect to server [mongodb://open5gs-mongodb/open5gs] (../lib/dbi/ogs-mongoc.c:122)
+07/29 17:11:07.152: [app] ERROR: Failed to initialize PCF (../src/pcf/app.c:28)
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl logs open5gs-populate-849996fc99-z2t4v -c init
+Current Mongosh Log ID: 66a7cde6fabac1b2c0eb788a
+Connecting to:          mongodb://open5gs-mongodb/open5gs?directConnection=true&appName=mongosh+1.8.0
+MongoServerSelectionError: Server selection timed out after 30000 ms
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl logs open5gs-udr-5c85fd895b-9lp6n
+Open5GS daemon v2.7.0
+
+07/29 17:12:34.677: [app] INFO: Configuration: '/opt/open5gs/etc/open5gs/udr.yaml' (../lib/app/ogs-init.c:130)
+07/29 17:12:54.701: [dbi] WARNING: Failed to connect to server [mongodb://open5gs-mongodb/open5gs] (../lib/dbi/ogs-mongoc.c:122)
+07/29 17:12:54.701: [app] WARNING: Failed to initialize UDR (../src/udr/app.c:28)
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl logs open5gs-webui-85d46d9bc-2bkdm init
+add admin user with password 1423 if no users
+MongoDB shell version v4.4.1
+connecting to: mongodb://open5gs-mongodb:27017/open5gs?compressors=disabled&gssapiServiceName=mongodb
+Error: couldn't connect to server open5gs-mongodb:27017, connection attempt failed: HostNotFound: Could not find address for open5gs-mongodb:27017: SocketException: Host not found (non-authoritative), try again later :
+connect@src/mongo/shell/mongo.js:374:17
+@(connect):2:6
+exception: connect failed
+exiting with code 1
+
+
+*******************************
+
+CoreDNS tests
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl exec -ti dnsutils -- cat /etc/resolv.conf
+search default.svc.cluster.local svc.cluster.local cluster.local openstacklocal
+nameserver 10.43.0.10
+options ndots:5
+ubuntu@k3smanager:~/5gc/open5gs$
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl exec -i -t dnsutils -- nslookup open5gs-mongodb
+Server:         10.43.0.10
+Address:        10.43.0.10#53
+
+Name:   open5gs-mongodb.default.svc.cluster.local
+Address: 10.43.98.134
+
+ubuntu@k3smanager:~/5gc/open5gs$
+
+---
+
+ubuntu@k3smanager:~/5gc/open5gs$ kubectl exec -i -t dnsutils -- nslookup open5gs-mongodb.default
+Server:         10.43.0.10
+Address:        10.43.0.10#53
+
+Name:   open5gs-mongodb.default.svc.cluster.local
+Address: 10.43.98.134
+
+ubuntu@k3smanager:~/5gc/open5gs$
+
+---
