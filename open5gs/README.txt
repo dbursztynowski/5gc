@@ -200,3 +200,56 @@ iptables -A OUTPUT -j ACCEPT -m comment --comment "Accept all outgoing"
 https://labs.iximiuz.com/courses/containerd-cli/ctr/image-management#what-is-ctr
 https://labs.iximiuz.com/courses/containerd-cli/ctr/image-management#basics
 
+============================================
+
+COREDNS PROBLEMS (MONGODB CONNECTIVITY PROBLEMS, ADDRESS NOT FOUND BY PODS)
+
+--------- Normal (correct) run ------------
+- forced delete if needed
+ubuntu@5gcore:~/5gc$ kubectl delete pod dnsutils --grace-period=0 --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "dnsutils" force deleted
+
+- run and use dnsutils pod
+---------------------------
+ubuntu@5gcore:~/5gc$ kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
+pod/dnsutils created
+
+ubuntu@5gcore:~/5gc$ watch kubectl get pods
+ubuntu@5gcore:~/5gc$ kubectl exec -i -t dnsutils -- nslookup kubernetes.default
+Server:		10.43.0.10
+Address:	10.43.0.10#53
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.43.0.1
+
+ubuntu@5gcore:~/5gc$ kubectl exec -ti dnsutils -- cat /etc/resolv.conf
+search default.svc.cluster.local svc.cluster.local cluster.local
+nameserver 10.43.0.10
+options ndots:5
+
+ubuntu@5gcore:~/5gc$ kubectl get pods --namespace=kube-system -l k8s-app=kube-dns
+NAME                      READY   STATUS    RESTARTS      AGE
+coredns-6799fbcd5-m5pw6   1/1     Running   2 (19m ago)   6d
+
+- btw. erroneous mongodb name:
+ubuntu@5gcore:~/5gc$ kubectl exec -i -t dnsutils -- nslookup mongodb.default
+Server:		10.43.0.10
+Address:	10.43.0.10#53
+
+** server can't find mongodb.default: NXDOMAIN
+command terminated with exit code 1
+
+- correct naming of mongodb
+ubuntu@5gcore:~/5gc$ kubectl exec -i -t dnsutils -- nslookup open5gs-mongodb.default
+Server:		10.43.0.10
+Address:	10.43.0.10#53
+
+Name:	open5gs-mongodb.default.svc.cluster.local
+Address: 10.43.7.181
+
+ubuntu@5gcore:~/5gc$
+
+-------------- Failed run -------------------
+
+
