@@ -257,5 +257,11 @@ Address: 10.43.7.181
 ubuntu@5gcore:~/5gc$
 
 -------------- Failed run -------------------
+ubuntu@k3smanager:~/5gc/k3subuntu$ kubectl exec -i -t dnsutils -- nslookup kubernetes.default
+;; connection timed out; no servers could be reached
 
+command terminated with exit code 1
+ubuntu@k3smanager:~/5gc/k3subuntu$
+
+**********************************************
 
