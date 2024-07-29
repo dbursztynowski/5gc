@@ -5,6 +5,18 @@ For k8s cluster on multinode see, e.g., https://phoenixnap.com/kb/install-kubern
 
 PREPARE UBUNTU 22.04
 
+if OpenStack (optional)
+=====================================
+- to lunch instance from image with password authentication enabled (here pwd=ubuntu)
+  - insert the following into Configuration/Customization script pane in OpenStack Dashboard
+    ubuntu is the default user on Ubuntu 
+#cloud-config
+password: t6ygfr5
+chpasswd: { expire: False }
+ssh_pwauth: True
+
+- more on this: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init#setting_up_cloud_init
+
 for VirtualBox only
 =========================================
 - enable terminal
@@ -49,18 +61,6 @@ $ sudo apt install git
 $ sudo nano /etc/ssh/sshd_config
   PasswordAuthentication yes
 $ sudo service ssh restart
-
-if OpenStack (optional)
-=====================================
-- to lunch instance from image with password authentication enabled (here pwd=ubuntu)
-  - insert the following into Configuration/Customization script pane in OpenStack Dashboard
-    ubuntu is the default user on Ubuntu 
-#cloud-config
-password: t6ygfr5
-chpasswd: { expire: False }
-ssh_pwauth: True
-
-- more on this: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init#setting_up_cloud_init
 
 *****************************************
 INSTALL KUBERNETES
