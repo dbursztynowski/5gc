@@ -81,7 +81,7 @@ $ systemctl status k3s.service
 
 - install agent(s)
   on master
-$ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@10.0.0.12:/home/ubuntu/node-token
+$ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@<agent-node-address>:/home/ubuntu/node-token
   on worker (agent)
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
   where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
