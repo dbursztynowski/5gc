@@ -146,3 +146,15 @@ $ ./get_helm.sh
 ********************************
 
 $ /usr/local/bin/k3s-uninstall.sh
+
+*********************************
+OTHER HINTS
+*********************************
+- remove k3s.service completely
+$ sudo systemctl stop k3s.service
+$ sudo systemctl status k3s.service
+$ sudo systemctl disable k3s.service
+$ sudo rm /etc/systemd/system/*k3s.service
+$ sudo rm /usr/lib/systemd/system/*k3s.service
+$ sudo systemctl daemon-reload
+
