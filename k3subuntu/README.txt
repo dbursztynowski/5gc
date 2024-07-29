@@ -82,6 +82,9 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true,SCTPSupport=true --tls-san=10.254.186.64" sh -
 
 - install agent(s)
+  on master
+$ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@10.0.0.12:/home/ubuntu/node-token
+  on worker (agent)
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
   where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
   (or one can copy-paste the token from the file directly into the command)
