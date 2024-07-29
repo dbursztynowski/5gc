@@ -50,6 +50,7 @@ $ sudo service ssh restart
 OpenStack
 - to lunch instance from image with password authentication enabled (here pwd=ubuntu)
   - insert the following into Configuration/Customization script pane in OpenStack Dashboard
+    ubuntu is the default user on Ubuntu 
 #cloud-config
 password: t6ygfr5
 chpasswd: { expire: False }
