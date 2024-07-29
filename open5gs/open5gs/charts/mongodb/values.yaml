@@ -105,8 +105,8 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/mongodb
-  ##  Original: tag: 5.0.10-debian-11-r3
-  tag: 4.4.15-debian-10-r8
+  tag: 5.0.10-debian-11-r3
+  ##tag: 4.4.15-debian-10-r8
   ## Specify a imagePullPolicy
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
@@ -565,11 +565,11 @@ readinessProbe:
 ##
 startupProbe:
   enabled: false
-  initialDelaySeconds: 5
-  periodSeconds: 20
-  timeoutSeconds: 10
-  successThreshold: 1
-  failureThreshold: 30
+##  initialDelaySeconds: 5
+##  periodSeconds: 20
+##  timeoutSeconds: 10
+##  successThreshold: 1
+##  failureThreshold: 30
 ## @param customLivenessProbe Override default liveness probe for MongoDB(&reg;) containers
 ## Ignored when livenessProbe.enabled=true
 ##
@@ -581,7 +581,7 @@ customReadinessProbe: {}
 ## @param customStartupProbe Override default startup probe for MongoDB(&reg;) containers
 ## Ignored when startupProbe.enabled=true
 ##
-customStartupProbe: {}
+customStartupProbe:
 ## @param initContainers Add additional init containers for the hidden node pod(s)
 ## Example:
 ## initContainers:
@@ -591,6 +591,19 @@ customStartupProbe: {}
 ##     ports:
 ##       - name: portname
 ##         containerPort: 1234
+##
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 30
+  exec:
+    command:
+      - sh
+      - -c
+      - |
+        mongosh --eval 'disableTelemetry()'
+        /bitnami/scripts/startup-probe.sh
 ##
 initContainers: []
 ## @param sidecars Add additional sidecar containers for the MongoDB(&reg;) pod(s)
