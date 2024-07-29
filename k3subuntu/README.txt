@@ -75,7 +75,7 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 - SCTP enablement in the cluster:
   ------------------------------
   feature-gates: SCTPSupport=true => --kube-apiserver-arg=feature-gates=SCTPSupport=true
-$ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true --kube-apiserver-arg=feature-gates=SCTPSupport=true --tls-san=10.254.186.64" sh -
+$ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true,SCTPSupport=true --tls-san=10.254.186.64" sh -
 
 - install agent(s)
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
