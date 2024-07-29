@@ -166,6 +166,12 @@ $ kubectl exec deployment/open5gs-populate -ti -- bash
 open5gs-dbctl add_ue_with_slice <imsi> <key> <opc> <apn> <sst> <sd>
 $ open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
 
+********************************************
+********************************************
+OTHER HINTS
+********************************************
+********************************************
+
 ============================================
 Grafana/Prometheus
 
@@ -184,7 +190,7 @@ $ kubectl get pods \
   HINT: $ kubectl explain pod.status.containerStatuses.state
   
 ============================================
-In-place scaling
+In-place pod scaling
 
 https://medium.com/@karla.saur/trying-out-the-new-in-place-pod-resource-resizing-68a0b3c42b72
 ============================================
