@@ -21,7 +21,10 @@ $ sudo systemctl restart gdm3
 
 - enable VBoxGuestAdditions
 VM -> Devices -> Mount image with Guest Additions -> cd /media/ubuntu/VBox_GAs_xyz (xyz according to your env) -> 
-   sudo VBoxLinuxAdditions.run -> VM 
+   sudo VBoxLinuxAdditions.run -> VM
+
+**************************
+Prepare reamining (all releases(
 
 - enable IP forwarding
   https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
