@@ -2,7 +2,7 @@
 https://github.com/Gradiant/5g-charts/tree/main/charts
 ******************************************************
 
-- INSTALL Open5GS + UERANSIM + correct mongodb image (quick version, to be improved later by changing the elm chart)
+- INSTALL Open5GS + UERANSIM + correct mongodb image (quick version, to be improved later by changing the Helm chart)
   below, it is assummed that avx instruction set extension is not supported
 
   Note: after cloning the repo and setting the cluster, 5gc/open5gs is your working 
