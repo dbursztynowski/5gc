@@ -88,6 +88,7 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--f
 $ systemctl status k3s.service
 
 - copy k3s.yaml to ~HOME/.kube/config and change ownership for current user
+  Note: adjust nodes / copy FROM master TO management node
 $ sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
@@ -163,6 +164,7 @@ $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--c
 $ systemctl status k3s.service
 
 - copy k3s.yaml to ~HOME/.kube/config and change ownership for current user
+  Note: adjust nodes / copy FROM master TO management node
 $ sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
