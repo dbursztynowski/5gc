@@ -208,4 +208,3 @@ $ sudo systemctl disable k3s.service
 $ sudo rm /etc/systemd/system/*k3s.service
 $ sudo rm /usr/lib/systemd/system/*k3s.service
 $ sudo systemctl daemon-reload
-
