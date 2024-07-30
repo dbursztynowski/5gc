@@ -28,7 +28,7 @@ $ su -
 # sudo usermod -aG sudo <username>
 # visudo ==> add:
   <username> ALL=(ALL) NOPASSWD:ALL
-# exuit
+# exit
 
 - disable Wayland (if you experience problems with the display)
 https://linuxconfig.org/how-to-enable-disable-wayland-on-ubuntu-22-04-desktop
