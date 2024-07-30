@@ -1,8 +1,8 @@
-************************************************************************
 Below, k3s cluster is installed.
 For k8s cluster on multinode see, e.g., https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
-************************************************************************
 
+*****************************************
+*****************************************
 PREPARE UBUNTU 22.04
 
 if OpenStack (optional)
@@ -63,7 +63,9 @@ $ sudo nano /etc/ssh/sshd_config
 $ sudo service ssh restart
 
 *****************************************
-INSTALL KUBERNETES
+*****************************************
+
+INSTALL KUBERNETES FOR CALICO
 
 - install k3s on ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-cluster-on-ubuntu
@@ -150,6 +152,35 @@ kind: APIServer
 metadata:
   name: default
 spec: {}
+
+*****************************************
+*****************************************
+
+INSTALL KUBERNETES WITH FLANNEL
+
+Note: to enable external access to the API (e.g., to use kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address valid within the cluster (e.g., when the server is exposed by floating IP in OpenStack) then additional option --tls-san=<floating-ip-address> should be included in the part INSTALL_K3S_EXEC="...". This will make x509 certificate for this address become valid. For example:
+$ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--cluster-cidr=10.42.0.0/16  --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true --tls-san=10.254.186.64" sh -
+  ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
+       https://docs.k3s.io/installation/configuration#registration-options-for-the-k3s-server
+
+- check status
+$ systemctl status k3s.service
+
+- copy k3s.yaml to ~HOME/.kube/config and change ownership for current user
+$ sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+---
+
+- install agent(s)
+  on master
+$ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@<agent-node-address>:/home/ubuntu/node-token
+  on worker (agent)
+$ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
+  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
+  (or one can copy-paste the token from the file directly into the command)
+- check status
+$ systemctl status k3s-agent
 
 ********************************
 HELM
