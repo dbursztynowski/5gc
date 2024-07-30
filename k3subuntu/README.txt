@@ -101,11 +101,6 @@ $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat
 - check status
 $ systemctl status k3s-agent
 
-- uninstall server: run on server
-$ /usr/local/bin/k3s-uninstall.sh
-- uninstall agents: run on agents
-$ /usr/local/bin/k3s-agent-uninstall.sh
-
 ******************************
 INSTALL CALICO
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/quickstart
@@ -184,6 +179,14 @@ $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat
 $ systemctl status k3s-agent
 
 ********************************
+- uninstall k3s server: run on server
+$ /usr/local/bin/k3s-uninstall.sh
+
+- uninstall k3s agents: run on agents
+$ /usr/local/bin/k3s-agent-uninstall.sh
+
+********************************
+********************************
 HELM
 - install helm
 $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -195,8 +198,9 @@ $ ./get_helm.sh
 $ /usr/local/bin/k3s-uninstall.sh
 
 *********************************
-OTHER HINTS
 *********************************
+OTHER HINTS
+
 - remove k3s.service completely
 $ sudo systemctl stop k3s.service
 $ sudo systemctl status k3s.service
