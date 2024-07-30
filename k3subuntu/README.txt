@@ -6,7 +6,7 @@ For k8s cluster on multinode see, e.g., https://phoenixnap.com/kb/install-kubern
 PREPARE UBUNTU 22.04
 
 if OpenStack (optional)
-=====================================
+=========================================
 - to lunch instance from image with password authentication enabled (here pwd=ubuntu)
   - insert the following into Configuration/Customization script pane in OpenStack Dashboard
     ubuntu is the default user on Ubuntu 
@@ -41,7 +41,7 @@ VM -> Devices -> Mount image with Guest Additions -> cd /media/ubuntu/VBox_GAs_x
    sudo VBoxLinuxAdditions.run -> VM
 
 Prepare reamining stuff (all releases)
-======================================
+=========================================
 
 - enable IP forwarding
   https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux <== also torubleshooting
@@ -64,7 +64,9 @@ $ sudo service ssh restart
 
 *****************************************
 *****************************************
+INSTALL KUBERNETES
 
+******************************
 INSTALL KUBERNETES FOR CALICO
 
 - install k3s on ubuntu
@@ -153,10 +155,9 @@ metadata:
   name: default
 spec: {}
 
-*****************************************
-*****************************************
-
+******************************
 INSTALL KUBERNETES WITH FLANNEL
+(no calico)
 
 Note: to enable external access to the API (e.g., to use kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address valid within the cluster (e.g., when the server is exposed by floating IP in OpenStack) then additional option --tls-san=<floating-ip-address> should be included in the part INSTALL_K3S_EXEC="...". This will make x509 certificate for this address become valid. For example:
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--cluster-cidr=10.42.0.0/16  --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true --tls-san=10.254.186.64" sh -
