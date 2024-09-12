@@ -13,8 +13,8 @@ https://github.com/Gradiant/5g-charts/tree/main/charts
 
 # ==> if $ cat /proc/cpuinfo | grep avx returns blank output on your host machine (so your host does not support avx
       instruction set extension ) then you have to change the mongodb image to be used
-  - download open5gs helm chart
-$ helm pull oci://registry-1.docker.io/gradiant/open5gs --version 2.2.0
+  - download open5gs helm chart (earlier we used version 2.2.0)
+$ helm pull oci://registry-1.docker.io/gradiant/open5gs --version 2.2.4
   - unzip to directory ./open5gs (https://phoenixnap.com/kb/extract-tar-gz-files-linux-command-line)
 $ tar -xvzf open5gs-2.2.0.tgz -C ./open5gs   # adjust *.tgz file name according to your case
 
@@ -29,9 +29,24 @@ image:
 ===========================================
 OPEN5GS
 -------------------------------------------
-  - install open5gs (decide if default or customized user set is to be created)
+- install open5gs: decide if default or customized user set is to be created and follow appropriate option out of the two given below
+  - for default UE list (two UEs will be created)
 $ helm install open5gs ./open5gs --version 2.2.0 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
-  - for custom UE list (update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml to deploy UERANSIM)
+  - for custom UE list update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml for the UEs to deploy UERANSIM correctly
+    - downlowad and update the UE config file
+$ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
+$ nano 5gSA-values.yaml
+$ cat 5gSA-values.yaml   <=== below, four UEs will be generated
+...
+populate:
+  enabled: true
+  initCommands:
+  - open5gs-dbctl add_ue_with_slice 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000002 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000003 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+$
+- actual install
 $ helm install open5gs ./open5gs --version 2.2.0 --values ./5gSA-values.yaml
 
 - testing (dry run)
@@ -69,11 +84,32 @@ $ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.
 
 ===========================================
 Basic UERANSIM 
-Note: an alternative to ueransim is https://github.com/my5G/my5G-RANTester/wiki/Usage
+Note: an alternative to ueransim to generate traffic (but without any insight into UE-gNB signalling) is:
+      https://github.com/my5G/my5G-RANTester/wiki/Usage
 -------------------------------------------
 - install UERANSIM with default config
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
   - UERANSIM with custom UE list
+$ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
+$ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs, and mcc/mnc and sd values)
+amf:
+  hostname: open5gs-amf-ngap
+
+gnb:
+  hostname: ueransim-gnb
+
+mcc: '999'
+mnc: '70'
+sst: 1
+sd: "0x111111"
+tac: '0001'
+
+ues:
+  enabled: true
+  count: 4
+  initialMSISDN: '0000000001'
+$
+  - actual install
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 # now check the connectivity (see below)
