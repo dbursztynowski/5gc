@@ -76,6 +76,8 @@ https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-clu
 - simplest (no calico, etc.)
 # $ curl -sfL https://get.k3s.io  | INSTALL_K3S_EXEC="--kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
 
+---
+
 - install control node with appropriate settings (no flannel and traefik, enable InPlacePodVerticalScaling)
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.42.0.0/16 --disable-network-policy --disable=traefik --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
 
@@ -92,14 +94,21 @@ $ systemctl status k3s.service
 $ sudo cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+---
+
 - install agent(s)
   on master
 $ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@<agent-node-address>:/home/ubuntu/node-token
   on worker (agent)
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
-  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node and should first be copied onto agent node to the working directory for curl command, e.g. /home/ubuntu/node-token as in the 'sudo scp ...' command shown above (or one can copy-paste the token from the file directly into the command)
+  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node and should first be
+  copied onto agent node to the working directory for curl command, e.g. /home/ubuntu/node-token as in the 'sudo scp ...' command
+  shown above (or one can copy-paste the token from the file directly into the command)
 - check status
 $ systemctl status k3s-agent
+
+- one can additionally assign label to the agent node(s) to mark their node-role as worker, e.g.:
+$ kubectl label nodes k3s02 node-role.kubernetes.io/worker=true
 
 ******************************
 INSTALL CALICO
@@ -177,12 +186,13 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 $ sudo scp /var/lib/rancher/k3s/server/node-token ubuntu@<agent-node-address>:/home/ubuntu/node-token
   on worker (agent)
 $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat node-token) sh -
-  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node
-  (or one can copy-paste the token from the file directly into the command)
+  where K3S_TOKEN=$(cat node-token) is stored in /var/lib/rancher/k3s/server/node-token file in the main Node and should first be
+  copied onto agent node to the working directory for curl command, e.g. /home/ubuntu/node-token as in the 'sudo scp ...' command
+  shown above (or one can copy-paste the token from the file directly into the command)
 - check status
 $ systemctl status k3s-agent
 
-- one can additionally label the agent node(s) as worker, e.g.:
+- one can additionally assign label to the agent node(s) to mark their node-role as worker, e.g.:
 $ kubectl label nodes k3s02 node-role.kubernetes.io/worker=true
 
 ********************************
