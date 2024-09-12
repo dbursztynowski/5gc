@@ -155,6 +155,9 @@ spec: {}
 INSTALL KUBERNETES WITH FLANNEL
 (no calico)
 
+---
+
+- install on master (control) node
 Note: to enable external access to the API (e.g., to use kubectl) when server IP address visible externally as <floating-ip-address> is different than server IP address valid within the cluster (e.g., when the server is exposed by floating IP in OpenStack) then additional option --tls-san=<floating-ip-address> should be included in the part INSTALL_K3S_EXEC="...". This will make x509 certificate for this address become valid. For example:
 $ curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--cluster-cidr=10.42.0.0/16  --kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true --tls-san=<external-master-ip-address>" sh -
   ref. https://github.com/k3s-io/k3s/issues/1381#issuecomment-582013411
