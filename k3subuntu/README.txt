@@ -182,6 +182,9 @@ $ curl -sfL https://get.k3s.io | K3S_URL=https://<serverip>:6443 K3S_TOKEN=$(cat
 - check status
 $ systemctl status k3s-agent
 
+- one can additionally label the agent node(s) as worker, e.g.:
+$ kubectl label nodes k3s02 node-role.kubernetes.io/worker=true
+
 ********************************
 - uninstall k3s server: run on server
 $ /usr/local/bin/k3s-uninstall.sh
