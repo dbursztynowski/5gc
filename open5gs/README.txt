@@ -87,9 +87,13 @@ Basic UERANSIM
 Note: an alternative to ueransim to generate traffic (but without any insight into UE-gNB signalling) is:
       https://github.com/my5G/my5G-RANTester/wiki/Usage
 -------------------------------------------
+
+---------
 - install UERANSIM with default config
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
-  - UERANSIM with custom UE list
+
+----------
+- install UERANSIM with custom UE list
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
 $ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs, and mcc/mnc and sd values)
 amf:
@@ -112,6 +116,7 @@ $
   - actual install
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
+---------
 # now check the connectivity (see below)
 ....
 
