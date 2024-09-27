@@ -331,3 +331,10 @@ https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-mu
 - iperf - install newest version on Ubuntu
 https://iperf.fr/iperf-download.php#ubuntu
   files here: https://launchpad.net/ubuntu/+source/iperf3
+  - but this is tricky for numerous dependencies;
+    removing packages: https://askubuntu.com/questions/151941/how-can-you-completely-remove-a-package
+  - packages needed:
+    - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libc6
+      https://launchpad.net/ubuntu/noble/amd64/libc6/2.39-0ubuntu8.3
+      apt-get install libc6=2.39-0ubuntu8.3
+    - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libsctp1/1.0.19+dfsg-2build1
