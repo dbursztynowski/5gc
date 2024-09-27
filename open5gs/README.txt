@@ -333,7 +333,7 @@ https://iperf.fr/iperf-download.php#ubuntu
   files here: https://launchpad.net/ubuntu/+source/iperf3
   - but this is tricky for numerous dependencies;
     removing packages: https://askubuntu.com/questions/151941/how-can-you-completely-remove-a-package
-  - packages needed:
+  - packages (newer versions) needed:
     - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libc6
       https://launchpad.net/ubuntu/noble/amd64/libc6/2.39-0ubuntu8.3
       apt-get install libc6=2.39-0ubuntu8.3
