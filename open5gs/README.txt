@@ -30,8 +30,12 @@ image:
 OPEN5GS
 -------------------------------------------
 - install open5gs: decide if default or customized user set is to be created and follow appropriate option out of the two given below
+
+  -------
   - for default UE list (two UEs will be created)
 $ helm install open5gs ./open5gs --version 2.2.5 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
+
+  -------
   - for custom UE list update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml for the UEs to deploy UERANSIM correctly
     - downlowad and update the UE config file
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
@@ -46,6 +50,7 @@ populate:
   - open5gs-dbctl add_ue_with_slice 999700000000003 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
   - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
 $
+
 - actual install
 $ helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
 
