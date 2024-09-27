@@ -13,7 +13,7 @@ https://github.com/Gradiant/5g-charts/tree/main/charts
 
 # ==> if $ cat /proc/cpuinfo | grep avx returns blank output on your host machine (so your host does not support avx
       instruction set extension ) then you have to change the mongodb image to be used
-  - download open5gs helm chart (earlier we used version 2.2.0)
+  - download open5gs helm chart (earlier we used version 2.2.0 and it worked fine)
 $ helm pull oci://registry-1.docker.io/gradiant/open5gs --version 2.2.5
   - unzip to directory ./open5gs (https://phoenixnap.com/kb/extract-tar-gz-files-linux-command-line)
 $ tar -xvzf open5gs-2.2.5.tgz -C ./open5gs   # adjust *.tgz file name according to your case
