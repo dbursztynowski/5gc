@@ -319,4 +319,5 @@ command terminated with exit code 1
 ubuntu@k3smanager:~/5gc/k3subuntu$
 
 **********************************************
-
+- iperf3 - using multiple interfaces / multiple destinations
+https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-multiple-client-interfaces-on-same-machine
