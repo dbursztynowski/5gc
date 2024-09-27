@@ -319,5 +319,12 @@ command terminated with exit code 1
 ubuntu@k3smanager:~/5gc/k3subuntu$
 
 **********************************************
+iperf
+
 - iperf3 - using multiple interfaces / multiple destinations
 https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-multiple-client-interfaces-on-same-machine
+  additionally use the --bind-dev option: https://github.com/esnet/iperf/issues/1572
+
+- iperf - install newest version on Ubuntu
+https://iperf.fr/iperf-download.php#ubuntu
+  files here: https://launchpad.net/ubuntu/+source/iperf3
