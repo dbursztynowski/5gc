@@ -321,6 +321,9 @@ ubuntu@k3smanager:~/5gc/k3subuntu$
 **********************************************
 iperf
 
+- public iperf servers
+https://iperf.fr/iperf-servers.php
+
 - iperf3 - using multiple interfaces / multiple destinations
 https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-multiple-client-interfaces-on-same-machine
   additionally use the --bind-dev option: https://github.com/esnet/iperf/issues/1572
