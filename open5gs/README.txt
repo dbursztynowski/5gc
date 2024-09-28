@@ -324,7 +324,7 @@ Adjusting iperf3 to work with multiple interfaces (iperf3 version higher than 3.
 
 -------
 - public iperf servers
-https://iperf.fr/iperf-servers.php
+https://github.com/R0GGER/public-iperf3-servers?tab=readme-ov-file#servers-per-continent
 
 - iperf3 - using multiple interfaces / multiple destinations
 https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-multiple-client-interfaces-on-same-machine
