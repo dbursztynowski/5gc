@@ -319,8 +319,10 @@ command terminated with exit code 1
 ubuntu@k3smanager:~/5gc/k3subuntu$
 
 **********************************************
-iperf
+iperf3
+- to work with MULTIPLE INTERFACES (in addition to --bind [itf_ip_address] option use also --bind-dev [itf_name] option)
 
+-------
 - public iperf servers
 https://iperf.fr/iperf-servers.php
 
@@ -342,3 +344,23 @@ https://iperf.fr/iperf-download.php#ubuntu
       https://launchpad.net/ubuntu/noble/amd64/libc6/2.39-0ubuntu8.3
       apt-get install libc6=2.39-0ubuntu8.3
     - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libsctp1/1.0.19+dfsg-2build1
+
+-------
+*** sequence seemingly working on Ubuntu 22.04 (sometimes --auto-deconfigure option is needed in some cases) ***
+(most libraries are derived from Ubuntu 24.04 release; mayby 24.04 is preferable)
+
+wget http://launchpadlibrarian.net/748295744/libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
+sudo dpkg -i libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
+wget http://launchpadlibrarian.net/742979756/libc6_2.39-0ubuntu8.3_amd64.deb
+sudo dpkg -i --auto-deconfigure libc6_2.39-0ubuntu8.3_amd64.deb
+wget http://launchpadlibrarian.net/748295524/gcc-14-base_14.2.0-4ubuntu2~24.04_amd64.deb
+sudo dpkg -i gcc-14-base_14.2.0-4ubuntu2~24.04_amd64.deb
+wget http://launchpadlibrarian.net/742979745/libc-bin_2.39-0ubuntu8.3_amd64.deb
+sudo dpkg -i libc-bin_2.39-0ubuntu8.3_amd64.deb
+wget http://launchpadlibrarian.net/723766393/libsctp1_1.0.19+dfsg-2build1_amd64.deb
+sudo dpkg -i libsctp1_1.0.19+dfsg-2build1_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl3t64_3.0.13-0ubuntu3.4_amd64.deb
+sudo dpkg -i --auto-deconfigure libssl3t64_3.0.13-0ubuntu3.4_amd64.deb
+wget http://launchpadlibrarian.net/722303177/iperf3_3.16-1build2_amd64.deb
+wget http://launchpadlibrarian.net/722303180/libiperf0_3.16-1build2_amd64.deb
+sudo dpkg -i iperf3_3.16-1build2_amd64.deb libiperf0_3.16-1build2_amd64.deb
