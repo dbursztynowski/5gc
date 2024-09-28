@@ -349,6 +349,7 @@ https://iperf.fr/iperf-download.php#ubuntu
 *** Install sequence of iperf3 v3.16 seemingly working on Ubuntu 22.04 ***
 (Note1: sometimes --auto-deconfigure option is needed) ***
 (Note2: most libraries are derived from Ubuntu 24.04 release; mayby 24.04 is preferable at all)
+(Note3: the below stuff has to be converted onto a dockerized version (to be embedded somehow in dockerfile))
 
 wget http://launchpadlibrarian.net/748295744/libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
 sudo dpkg -i libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
