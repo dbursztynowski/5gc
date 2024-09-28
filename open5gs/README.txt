@@ -335,7 +335,8 @@ https://iperf.fr/iperf-download.php#ubuntu
   maybe: sudo apt install iperf3=3.16-1build2 
 
   - but this is tricky for numerous dependencies;
-    removing packages: https://askubuntu.com/questions/151941/how-can-you-completely-remove-a-package
+    - listing istalled packages: https://www.cyberciti.biz/faq/apt-get-list-packages-are-installed-on-ubuntu-linux/
+    - removing packages: https://askubuntu.com/questions/151941/how-can-you-completely-remove-a-package
   - packages (newer versions) needed:
     - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libc6
       https://launchpad.net/ubuntu/noble/amd64/libc6/2.39-0ubuntu8.3
