@@ -319,8 +319,8 @@ command terminated with exit code 1
 ubuntu@k3smanager:~/5gc/k3subuntu$
 
 **********************************************
-iperf3
-- to work with MULTIPLE INTERFACES (in addition to --bind [itf_ip_address] option use also --bind-dev [itf_name] option)
+Adjusting iperf3 to work with multiple interfaces (iperf3 version higher than 3.9 is needed)
+- to work with MULTIPLE INTERFACES use --bind-dev [itf_name] option in addition to --bind [itf_ip_address] option
 
 -------
 - public iperf servers
@@ -330,7 +330,7 @@ https://iperf.fr/iperf-servers.php
 https://superuser.com/questions/1682859/how-to-run-iperf3-throughput-test-for-multiple-client-interfaces-on-same-machine
   additionally use the --bind-dev option: https://github.com/esnet/iperf/issues/1572
 
-- iperf - install newest version on Ubuntu
+- iperf - install a newer version on Ubuntu
 https://iperf.fr/iperf-download.php#ubuntu
   files here: https://launchpad.net/ubuntu/+source/iperf3
 
@@ -346,8 +346,9 @@ https://iperf.fr/iperf-download.php#ubuntu
     - (current to remove) https://launchpad.net/ubuntu/noble/amd64/libsctp1/1.0.19+dfsg-2build1
 
 -------
-*** sequence seemingly working on Ubuntu 22.04 (sometimes --auto-deconfigure option is needed in some cases) ***
-(most libraries are derived from Ubuntu 24.04 release; mayby 24.04 is preferable)
+*** Install sequence of iperf3 v3.16 seemingly working on Ubuntu 22.04 ***
+(Note1: sometimes --auto-deconfigure option is needed) ***
+(Note2: most libraries are derived from Ubuntu 24.04 release; mayby 24.04 is preferable at all)
 
 wget http://launchpadlibrarian.net/748295744/libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
 sudo dpkg -i libgcc-s1_14.2.0-4ubuntu2~24.04_amd64.deb
