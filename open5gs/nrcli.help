@@ -37,6 +37,7 @@ chmod 777 /usr/local/bin/nr-cli
 ======================================
 RUNNING nr-binder
 
+$ cd /usr/local/bin
 $ ./nr-binder {PDU-SESSION-IP-ADDRESS} {COMMAND} {ARGS}
 $ ./nr-binder 10.45.0.2 curl google.com
 $ ./nr-binder 10.45.0.2 firefox
