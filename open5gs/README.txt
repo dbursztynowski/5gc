@@ -35,7 +35,7 @@ OPEN5GS
   - for default UE list (two UEs will be created)
 $ helm install open5gs ./open5gs --version 2.2.5 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
 
-  -------
+  ------- @@@
   - for custom UE list update UEs consistently in 5gSA-values.yaml for 5gcore, and in gnb-ues-values.yaml for the UEs to deploy UERANSIM correctly
     - downlowad and update the UE config file
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/5gSA-values.yaml
@@ -97,7 +97,7 @@ Note: an alternative to ueransim to generate traffic (but without any insight in
 - install UERANSIM with default config
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
 
-----------
+----------@@@
 - install UERANSIM with custom UE list
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
 $ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs, and mcc/mnc and sd values)
@@ -152,7 +152,8 @@ $ kubectl label nodes k3sworker db.5gnet/workload=ran-functions
 $ helm install ueransim-gnb ./ueransim-gnb-place/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 ==========================================
-Check UE's connectivity
+Check UE's connectivity @@@
+(nie trzeba wszystkiego, wystarczy example z ping)
 ------------------------------------------
 You have also deployed 2 ues. You can enter ues terminal with:
 
