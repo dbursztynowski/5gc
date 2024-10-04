@@ -1,3 +1,15 @@
+## Adjusted for:
+## - container image version gradiant/ueransim:dev-b68de9b (tag dev-b68de9b)
+## - four UEs (must be consistent with gnb deployment)
+
+image:
+  registry: docker.io
+  repository: gradiant/ueransim
+  tag: dev-b68de9b
+  pullPolicy: Always
+  pullSecrets: []
+  debug: false
+
 amf:
   hostname: open5gs-amf-ngap
 
