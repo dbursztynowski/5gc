@@ -1,5 +1,7 @@
 # Run server:
-#  run deployment + kubectl 
+#  run the deployment and check the pod's IP to run the client
+
+# entering commands to a container: https://www.baeldung.com/linux/kubernetes-pass-many-commands 
 
 apiVersion: apps/v1
 kind: Deployment
@@ -20,3 +22,14 @@ spec:
           image: heywoodlh/iperf3:iperf3
           ports:
             - containerPort: 5201
+#          command: ["iperf3"]
+          args: ["-s", "-p 5201"]
+
+#          command: ["sh", "-c"]
+#          args:
+#          - |
+#            echo "iperf3 -s -p 5201"
+#            echo "iperf3 -s -p 5202"
+#            echo "iperf3 -s -p 5203"
+#            echo "iperf3 -s -p 5204"
+# client run: iPerf3 -c <server-IP> -p <server-port>
