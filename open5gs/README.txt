@@ -1,4 +1,4 @@
-- SOURCES:
+ - SOURCES:
 https://github.com/Gradiant/5g-charts/tree/main/charts
 ******************************************************
 
@@ -98,7 +98,12 @@ Note: an alternative to ueransim to generate traffic (but without any insight in
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
 
 ----------@@@
-- install UERANSIM with custom UE list
+- install UERANSIM with custom UE list and gradiant/ueransim:dev-b68de9b image to have iperf3 ver. 3.17
+  - download Helm chars
+$ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
+$ mkdir ueransim-gnb-0.2.6
+$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
+
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
 $ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs, and mcc/mnc and sd values)
 amf:
