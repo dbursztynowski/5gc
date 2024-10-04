@@ -325,6 +325,12 @@ command terminated with exit code 1
 ubuntu@k3smanager:~/5gc/k3subuntu$
 
 **********************************************
+USING IPERF3
+**********************************************
+- https://github.com/aligungr/UERANSIM/discussions/474
+  # ./nr-binder {PDU-IP-ADDRESS} iperf3 -c {IP-OF-CORE-NETWORK-MACHINE} -i 1 -t 2000
+  # iperf3 -c {IP-OF-CORE-NETWORK-MACHINE} -i 1 -t 2000 -B ${PDU-IP-ADDRESS}
+
 Adjusting iperf3 to work with multiple interfaces (iperf3 version higher than 3.9 is needed)
 - to work with MULTIPLE INTERFACES use --bind-dev [itf_name] option in addition to --bind [itf_ip_address] option
 
