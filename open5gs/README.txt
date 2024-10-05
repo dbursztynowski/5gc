@@ -378,3 +378,18 @@ sudo dpkg -i --auto-deconfigure libssl3t64_3.0.13-0ubuntu3.4_amd64.deb
 wget http://launchpadlibrarian.net/722303177/iperf3_3.16-1build2_amd64.deb
 wget http://launchpadlibrarian.net/722303180/libiperf0_3.16-1build2_amd64.deb
 sudo dpkg -i iperf3_3.16-1build2_amd64.deb libiperf0_3.16-1build2_amd64.deb
+
+*************************************
+Alernative traffic generarion option
+-------------------------------------
+- use Node.js as server and curl clients for UE
+- Node.js
+https://www.digitalocean.com/community/tutorials/how-to-build-a-node-js-application-with-docker
+        https://www.digitalocean.com/community/tutorials/nodejs-how-to-use__dirname
+https://www.docker.com/blog/getting-started-with-docker-using-node-jspart-i/===> https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files
+
+- POST files with curl
+https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl
+
+*************************************
+
