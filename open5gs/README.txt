@@ -391,5 +391,7 @@ https://www.docker.com/blog/getting-started-with-docker-using-node-jspart-i/===>
 - POST files with curl
 https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl
 
+- ewentualnie (odpowiada jakimś "defaultem"). obraz do wyprodukowania
+https://github.com/KSonny4/simple-docker-http-server/tree/master
 *************************************
 
