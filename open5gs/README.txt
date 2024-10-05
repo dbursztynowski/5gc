@@ -380,7 +380,7 @@ wget http://launchpadlibrarian.net/722303180/libiperf0_3.16-1build2_amd64.deb
 sudo dpkg -i iperf3_3.16-1build2_amd64.deb libiperf0_3.16-1build2_amd64.deb
 
 *************************************
-Alernative traffic generarion option
+Alernative traffic generation option
 -------------------------------------
 - use Node.js as server and curl clients for UE
 - Node.js
@@ -393,5 +393,8 @@ https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl
 
 - ewentualnie (odpowiada jakimś "defaultem"). obraz do wyprodukowania
 https://github.com/KSonny4/simple-docker-http-server/tree/master
+
+- building - Docker ENTRYPOINT & COMMAND
+https://www.cloudbees.com/blog/understanding-dockers-cmd-and-entrypoint-instructions
 *************************************
 
