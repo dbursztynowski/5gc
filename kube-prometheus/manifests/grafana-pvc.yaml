@@ -1,0 +1,14 @@
+#DB: need to store grafana dashboards and save them in case of Grafana pod restarts.
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-local-path-pvc
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 500Mi

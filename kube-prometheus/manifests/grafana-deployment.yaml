@@ -1,3 +1,5 @@
+# DB: added persistentVolumeClaim for Grafana
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,6 +41,23 @@ spec:
           httpGet:
             path: /api/health
             port: http
+# DB: addition to suppress readiness probe failure
+# Added - beginning
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 2
+#----
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 3000
+          timeoutSeconds: 1
+# Added - end
         resources:
           limits:
             cpu: 200m
@@ -157,8 +176,11 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - emptyDir: {}
-        name: grafana-storage
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-local-path-pvc
+#      - emptyDir: {}                  # we have persistentyVolume instead
+#        name: grafana-storage         # we have persistentyVolume instead
       - name: grafana-datasources
         secret:
           secretName: grafana-datasources
