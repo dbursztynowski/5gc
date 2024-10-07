@@ -11,6 +11,10 @@ $ minikube start --kubernetes-version=v1.30.0 --driver=docker --container-runtim
 ==============================================
 - install kube-prometheus
 https://github.com/prometheus-operator/kube-prometheus
+(check the compatibility matrix at this link and select the right varsion one for you to wget as shown below)
+
+$ mkdir kube-prometheus
+$ wget https://github.com/prometheus-operator/kube-prometheus/tree/main kube-prometheus
 
 $ kubectl apply --server-side -f manifests/setup
 $ kubectl wait \
