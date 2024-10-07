@@ -23,6 +23,8 @@ $ kubectl wait \
 	--namespace=monitoring
 $ kubectl apply -f manifests/
 
+Note: you may need to follow the instructions from the SPIW lab k3s install guide (possible need to update Prometheus and Grafana cluster roles, services and network policies, and Grafana deployment (update readinessProbe and add livenessProbe)).
+
 - tear down the stack
 $ kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup
 
