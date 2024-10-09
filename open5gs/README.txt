@@ -397,4 +397,11 @@ https://github.com/KSonny4/simple-docker-http-server/tree/master
 - building - Docker ENTRYPOINT & COMMAND
 https://www.cloudbees.com/blog/understanding-dockers-cmd-and-entrypoint-instructions
 *************************************
+Packetrusher
+
+- Gradiant packetrusher
+https://gradiant.github.io/5g-charts/open5gs-packetrusher.html
+
+- muli-ue mode
+https://github.com/HewlettPackard/PacketRusher/discussions/132
 
