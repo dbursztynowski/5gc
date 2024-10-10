@@ -59,6 +59,8 @@ $ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.
 
 -------------------------------------------
 Correcting OPEN5GS mongodb probes if mongodb crashes
+- mongodb readiness probe crasher => kubectl describe pods <mongodb>:
+  Readiness probe failed: command "/bitnami/scripts/readiness-probe.sh" timed out
 
 Note: hints for Helm: https://www.alibabacloud.com/blog/helm-charts-and-template-basics---part-2_595490
 
