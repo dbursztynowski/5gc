@@ -216,11 +216,13 @@ $ kubectl -n default exec -ti deployment/ueransim-ues-not-defined -- /bin/bash
 https://gradiant.github.io/5g-charts/open5gs-ueransim-gnb.html
 
 - UERANSIM usage guide, including nr-binder
-https://github.com/aligungr/UERANSIM/wiki/Usage
+  - configuration: https://github.com/aligungr/UERANSIM/wiki/Configuration
+  - more detailed: https://github.com/aligungr/UERANSIM/wiki/Usage
 
-- add single UE
+- Examles
+  - add single UE
 $ kubectl exec deployment/open5gs-populate -ti -- bash
-open5gs-dbctl add_ue_with_slice <imsi> <key> <opc> <apn> <sst> <sd>
+  open5gs-dbctl add_ue_with_slice <imsi> <key> <opc> <apn> <sst> <sd>
 $ open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
 
 - Wireshark dissector for UERANCJIM Radio Link protocol
