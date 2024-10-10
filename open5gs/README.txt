@@ -70,7 +70,7 @@ Note: hints for Helm: https://www.alibabacloud.com/blog/helm-charts-and-template
   - or even replacement of mongodb possible but needs changing the charts:
     https://github.com/FerretDB/FerretDB
 
-- (in open5gs/charts/mongodb/values.yaml change)
+- in open5gs/charts/mongodb/values.yaml change enabling customStartupProbe as below to disable Telemetry
 # startupProbe.enabled must be false (that is the default)
 customStartupProbe:
   initialDelaySeconds: 5
