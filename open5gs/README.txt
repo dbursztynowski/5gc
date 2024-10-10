@@ -407,3 +407,12 @@ https://gradiant.github.io/5g-charts/open5gs-packetrusher.html
 - muli-ue mode
 https://github.com/HewlettPackard/PacketRusher/discussions/132
 
+*************************************
+USING PROMETHEUS
+
+- querying metrics
+  - get the # of amf sessions (actually, for amf sessions only 'query=amf_session' below will be sufficient, but ...)
+    browser: http://10.254.186.64:9090/api/v1/query?query=amf_session{service="open5gs-amf-metrics"}
+    windows: curl 10.254.186.64:9090/api/v1/query -G -d "query=amf_session{service=\"open5gs-amf-metrics\"}"
+    linux:   as for windows (above) or 
+             curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics"}' | jq
