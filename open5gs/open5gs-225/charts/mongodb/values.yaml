@@ -580,7 +580,7 @@ customReadinessProbe: {}
 ## @param customStartupProbe Override default startup probe for MongoDB(&reg;) containers
 ## Ignored when startupProbe.enabled=true
 ##
-customStartupProbe: {}
+##DB customStartupProbe: {}
 ## @param initContainers Add additional init containers for the hidden node pod(s)
 ## Example:
 ## initContainers:
@@ -590,6 +590,21 @@ customStartupProbe: {}
 ##     ports:
 ##       - name: portname
 ##         containerPort: 1234
+## DB
+customStartupProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 30
+  exec:
+    command:
+      - sh
+      - -c
+      - |
+        mongosh --eval 'disableTelemetry()'
+        /bitnami/scripts/startup-probe.sh
+
 ##
 initContainers: []
 ## @param sidecars Add additional sidecar containers for the MongoDB(&reg;) pod(s)
