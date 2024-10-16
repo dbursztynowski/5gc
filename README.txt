@@ -29,7 +29,7 @@ Note: you may need to follow the instructions from the SPIW lab k3s install guid
 $ kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup
 
 =================================================
-- Setting Prometheus into the push mode enable the remoteWrite capability
+- Setting Prometheus into the push mode by enabling the remoteWrite capability
 
 To enable remoteWrite capability on Prometheus to push metrics to remote receiver without authentication, 
 add the the following to the prometheus-prometheus.yaml file, section Prometheus.prometheusSpec. In case of 
