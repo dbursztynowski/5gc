@@ -35,7 +35,9 @@ To enable remoteWrite capability on Prometheus to push metrics to remote receive
 add the the following to the prometheus-prometheus.yaml file, section Prometheus.prometheusSpec. In case of 
 authentication problems, refer to https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/config-other-methods/prometheus/remote-write-helm-operator/.
 
-For a more detailed tutorial on using remoteWrite, check also: https://developers.redhat.com/articles/2023/11/30/how-set-and-experiment-prometheus-remote-write#lab_setup
+For a more detailed tutorial on using remoteWrite, check also: https://developers.redhat.com/articles/2023/11/30/how-set-and-experiment-prometheus-remote-write#lab_setup.
+
+It can be more convinient to deploy kube-prometheus using Helm.
 
 #  prometheusSpec:
     remoteWrite:
