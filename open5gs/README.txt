@@ -107,7 +107,7 @@ $ mkdir ueransim-gnb-0.2.6
 $ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
 
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
-$ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs, and mcc/mnc and sd values)
+$ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs not greater than declared in 5gSA, and mcc/mnc and sd values)
 amf:
   hostname: open5gs-amf-ngap
 
