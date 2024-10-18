@@ -44,7 +44,7 @@ while $continue ; do
   # read amf_sessions form Prometheus
   amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
                'query=amf_session{service="open5gs-amf-metrics"}' | \
-               jq '.[].data.result[0].value[1]' curl.json | tr -d '"')"
+               jq '.data.result[0].value[1]' | tr -d '"')"
 
   # scale the resource
   cpu=$CPU0
