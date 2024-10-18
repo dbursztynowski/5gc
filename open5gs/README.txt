@@ -101,12 +101,17 @@ $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --v
 
 ----------@@@
 - install UERANSIM with custom UE list and gradiant/ueransim:dev-b68de9b image to have iperf3 ver. 3.17
-  - download Helm chars
+-------------------------------------------------------------------------------------------------------
+
+  - *** download Helm chars
 $ helm pull oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6
 $ mkdir ueransim-gnb-0.2.6
-$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-place
+$ tar -xvzf ueransim-gnb-0.2.6.tgz -C ./ueransim-gnb-0.2.6
 
+  - *** download values file to oadjust deployment
 $ wget https://gradiant.github.io/5g-charts/docs/open5gs-ueransim-gnb/gnb-ues-values.yaml
+
+  - *** initial values
 $ cat gnb-ues-values.yaml       <=== must be consistent with file 5gSA-values.yaml (# of UEs not greater than declared in 5gSA, and mcc/mnc and sd values)
 amf:
   hostname: open5gs-amf-ngap
@@ -124,15 +129,48 @@ ues:
   enabled: true
   count: 4
   initialMSISDN: '0000000001'
-$
-  - actual install
+
+  - *** update values to use gradiant/ueransim:dev-b68de9b image to have iperf3 ver. 3.17
+$ cat gnb-ues-values.yaml
+## Adjusted for:
+## - container image version gradiant/ueransim:dev-b68de9b (tag dev-b68de9b)
+## - four UEs (must be consistent with gnb deployment)
+
+image:
+  registry: docker.io
+  repository: gradiant/ueransim
+  tag: dev-b68de9b
+  pullPolicy: Always
+  pullSecrets: []
+  debug: false
+
+amf:
+  hostname: open5gs-amf-ngap
+
+gnb:
+  hostname: ueransim-gnb
+
+mcc: '999'
+mnc: '70'
+sst: 1
+sd: "0x111111"
+tac: '0001'
+
+ues:
+  enabled: true
+  count: 4
+  initialMSISDN: '0000000001'
+#------------------------------
+
+
+  - *** actual install
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 ---------
 # now check the connectivity (see below)
 ....
 
-- adjust the open5gs-populate deployment so that it starts properly on future cluster restarts (remove the whole init-containers section)
+- in case of problems with populate adjust the open5gs-populate deployment so that it starts properly on future cluster restarts (remove the whole init-containers section)
   $ kubectl get deployments open5gs-populate -o yaml > open5gs-populate-adjust.yaml
   $ nano open5gs-populate-adjust.yaml
     ==> remove whole section init-containers (so that init container is not run on cluster restarts in the future)
