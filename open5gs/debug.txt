@@ -1,0 +1,6 @@
+NAME: open5gs
+LAST DEPLOYED: Fri Oct 18 12:14:08 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None

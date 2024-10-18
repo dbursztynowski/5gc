@@ -13,13 +13,13 @@ amf_sessions=0
 
 #scaling thresholds and CPU quotas for the number of amf sessions
 AMFS0=0
-CPU0="100M" # if AMFS0 <= amf_sessions < AMFS1
+CPU0="100m" # if AMFS0 <= amf_sessions < AMFS1
 AMFS1=4
-CPU1="150M" # if AMFS1 <= amf_sessions < AMFS2
+CPU1="150m" # if AMFS1 <= amf_sessions < AMFS2
 AMFS2=8
-CPU2="200M" # if AMFS2 <= amf_sessions < AMFS3
+CPU2="200m" # if AMFS2 <= amf_sessions < AMFS3
 AMFS3=12
-CPU3="250M" # if AMFS3 <= amf_sessions
+CPU3="250m" # if AMFS3 <= amf_sessions
 
 #kubectl create namespace $NAMESPACE > /dev/null 2>&1    # > /dev/null 2>&1   - ignores command output
 
@@ -64,6 +64,9 @@ while $continue ; do
   fi
 
   echo "Iteration $iter, amf_sessions $amf_sessions, scale resource to $cpu"
+
+  kubectl patch pod open5gs-upf-7485fbd69c-hljfz --patch \
+          "{\"spec\":{\"containers\":[{\"name\":\"open5gs-upf\", \"resources\":{\"limits\":{\"cpu\":\"$cpu\"}}}]}}"
 
   # SLEEP TIME ============
   if [ $iter != $MAX_ITER ]
