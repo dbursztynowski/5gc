@@ -552,3 +552,18 @@ USING PROMETHEUS
     windows: curl 10.254.186.64:9090/api/v1/query -G -d "query=amf_session{service=\"open5gs-amf-metrics\"}"
     linux:   as for windows (above) or 
              curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics"}' | jq
+
+*************************************
+*************************************
+UE creation/deletion for UPF scaling
+
+- create initial set of UES (the number of UES to create configured in file gnb-ues-values.yaml; currently equals 4)
+$ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
+
+- create additional set of UEs (the number of UEs to create configured in the command as count=5, starting with MSIMSI=0000000005)
+  Note: more sets can be created in a similar way, but must not exceed the total number of UEs declared in Open%$GS core (mongodb)
+$ helm install -n default ueransim-ues-additional oci://registry-1.docker.io/gradiant/ueransim-ues --set gnb.hostname=ueransim-gnb --set count=5 --set initialMSISDN="0000000005"
+
+- delete additional UEs
+$ helm delete ueransim-ues-additional
+
