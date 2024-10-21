@@ -53,9 +53,11 @@ $
 
 - actual install
 $ helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
+  helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
 
 - testing (dry run)
 $ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
+  helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
 
 -------------------------------------------
 Correcting OPEN5GS mongodb probes if mongodb crashes
@@ -160,9 +162,8 @@ ues:
   enabled: true
   count: 4
   initialMSISDN: '0000000001'
+
 #------------------------------
-
-
   - *** actual install
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
