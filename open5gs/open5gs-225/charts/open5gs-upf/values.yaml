@@ -222,10 +222,10 @@ nodeSelector: {}
 resources:
   requests:
 ##    memory: "200Mi"
-    cpu: "50M"   
+    cpu: "50m"   
   limits:
 ##    memory: "200Mi"
-    cpu: "500M"
+    cpu: "200m"
 ## <<== end DB  
 ## Configure Pods Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
