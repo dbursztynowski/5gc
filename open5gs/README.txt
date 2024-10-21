@@ -51,6 +51,101 @@ populate:
   - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
 $
 
+---------------
+NOTE: to enabler metrics, above file should be updated as below:
+
+$ cat 5gSA-values-enable-metrics.yaml
+hss:
+  enabled: false
+
+mme:
+  enabled: false
+
+pcrf:
+  enabled: false
+
+smf:
+  config:
+    pcrf:
+      enabled: false
+
+sgwc:
+  enabled: false
+
+sgwu:
+  enabled: false
+
+amf:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels: {release: prometheus}
+  config:
+    guamiList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        amf_id:
+          region: 2
+          set: 1
+    taiList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        tac: [1]
+    plmnList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        s_nssai:
+          - sst: 1
+            sd: "0x111111"
+
+pcf:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels: {release: prometheus}
+
+upf:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels: {release: prometheus}
+
+smf:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      additionalLabels: {release: prometheus}
+  config:
+    pcrf:
+      enabled: false
+
+nssf:
+  config:
+    nsiList:
+      - uri: ""
+        sst: 1
+        sd: "0x111111"
+
+webui:
+  ingress:
+    enabled: false
+
+populate:
+  enabled: true
+  initCommands:
+  - open5gs-dbctl add_ue_with_slice 999700000000001 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000002 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000003 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+  - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
+---------------
+
 - actual install
 $ helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
   helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
