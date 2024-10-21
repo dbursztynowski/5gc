@@ -146,13 +146,13 @@ populate:
   - open5gs-dbctl add_ue_with_slice 999700000000004 465B5CE8B199B49FAA5F0A2EE238A6BC E8ED289DEBA952E4283B54E88E6183CA internet 1 111111
 ---------------
 
-- actual install
-$ helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
-  helm install open5gs ./open5gs --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
+- actual install (adjust open5gs directory name to your case)
+$ helm install open5gs ./open5gs<varsion> --version 2.2.5 --values ./5gSA-values.yaml
+  helm install open5gs ./open5gs-225 --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
 
-- testing (dry run)
-$ helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.5 --values ./5gSA-values.yaml
-  helm -n <namespace> install --debug --dry-run open5gs ./open5gs --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
+- testing (dry run) (adjust open5gs directory name to your case)
+$ helm -n <namespace> install --debug --dry-run open5gs ./open5gs<version> --version 2.2.5 --values ./5gSA-values.yaml
+  helm -n <namespace> install --debug --dry-run open5gs ./open5gs-225 --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
 
 -------------------------------------------
 Correcting OPEN5GS mongodb probes if mongodb crashes
