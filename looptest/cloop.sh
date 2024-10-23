@@ -41,10 +41,13 @@ while $continue ; do
   iter=$((iter+1))
 #  echo "Iteration $iter"
 
-  # read amf_sessions form Prometheus
+  # read amf_sessions form Prometheus - choose the version with appropriate namespace
   amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
-               'query=amf_session{service="open5gs-amf-metrics"}' | \
+               'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | \
                jq '.data.result[0].value[1]' | tr -d '"')"
+#  amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
+#               'query=amf_session{service="open5gs-amf-metrics",namespace="5gsrusher"}' | \
+#               jq '.data.result[0].value[1]' | tr -d '"')"  
 
   # scale the resource
   cpu=$CPU0
