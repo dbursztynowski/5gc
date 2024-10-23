@@ -5,8 +5,8 @@
 # Base scan time of the Prometheus in seconds
 BASE_SCAN_TIME=30
 
-# Namespace to be used
-NAMESPACE="default"
+# Current amespace
+NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)
 
 #The value of amf_sessions read from Prometheus
 amf_sessions=0
@@ -21,16 +21,20 @@ CPU2="200m" # if AMFS2 <= amf_sessions < AMFS3
 AMFS3=12
 CPU3="250m" # if AMFS3 <= amf_sessions
 
-#kubectl create namespace $NAMESPACE > /dev/null 2>&1    # > /dev/null 2>&1   - ignores command output
-
 MAX_ITER=-1
 if [ $# -gt 0 ] ; then
   if [ "$1" == "help" ] ; then
-    echo "Enter the preferred number of loop iterations. Otherwise infinite loop will be run."
+    echo "Enter the preferred number of loop iterations and namespace. Otherwise infinite loop will be run in default namespace."
     exit
   else
     MAX_ITER=$1
+    if [ $# -eq 2 ] ; then
+      NAMESPACE=$2
+    fi
+    echo "Running $1 iterations in namespace $NAMESPACE"
   fi
+else
+  echo "Running infinite loop in namespace $NAMESPACE"
 fi
 
 iter=0
@@ -43,11 +47,8 @@ while $continue ; do
 
   # read amf_sessions form Prometheus - choose the version with appropriate namespace
   amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
-               'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | \
+               'query=amf_session{service="open5gs-amf-metrics",namespace="$NAMESPACE"}' | \
                jq '.data.result[0].value[1]' | tr -d '"')"
-#  amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
-#               'query=amf_session{service="open5gs-amf-metrics",namespace="5gsrusher"}' | \
-#               jq '.data.result[0].value[1]' | tr -d '"')"  
 
   # scale the resource
   cpu=$CPU0
