@@ -561,6 +561,7 @@ UE creation/deletion for UPF scaling
   NOTE: we adopt a rule that MSISDN of UEs start form the value 0000000001 and subsequent UEs get subsequent MSISDN numbers
 
 $ curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics"}' | jq
+  curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="5gsrusher"}' | jq
 
 - create initial group of UEs (the number of UEs to create configured in file gnb-ues-values.yaml; currently equals 4)
   NOTE: here, we create UEs in groups, each group being implemented in a separate helm release
