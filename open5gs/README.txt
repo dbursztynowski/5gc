@@ -548,10 +548,10 @@ USING PROMETHEUS
 
 - querying metrics
   - get the # of amf sessions (actually, for amf sessions only 'query=amf_session' below will be sufficient, but ...)
-    browser: http://10.254.186.64:9090/api/v1/query?query=amf_session{service="open5gs-amf-metrics"}
-    windows: curl 10.254.186.64:9090/api/v1/query -G -d "query=amf_session{service=\"open5gs-amf-metrics\"}"
+    browser: http://10.254.186.64:9090/api/v1/query?query=amf_session{service="open5gs-amf-metrics",namespace="default"}
+    windows: curl 10.254.186.64:9090/api/v1/query -G -d "query=amf_session{service=\"open5gs-amf-metrics\",namespace=\"default\"}"
     linux:   as for windows (above) or 
-             curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics"}' | jq
+             curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | jq
 
 *************************************
 *************************************
@@ -560,7 +560,7 @@ UE creation/deletion for UPF scaling
 - first check current state (current # of UEs)
   NOTE: we adopt a rule that MSISDN of UEs start form the value 0000000001 and subsequent UEs get subsequent MSISDN numbers
 
-$ curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics"}' | jq
+$ curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | jq
   curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="5gsrusher"}' | jq
 
 - create initial group of UEs (the number of UEs to create configured in file gnb-ues-values.yaml; currently equals 4)
