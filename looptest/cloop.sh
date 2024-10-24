@@ -5,7 +5,7 @@
 # Base scan time of the Prometheus in seconds
 BASE_SCAN_TIME=30
 
-# Current amespace
+# Current namespace
 NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}'; echo)
 
 #The value of amf_sessions read from Prometheus
@@ -24,17 +24,27 @@ CPU3="250m" # if AMFS3 <= amf_sessions
 MAX_ITER=-1
 if [ $# -gt 0 ] ; then
   if [ "$1" == "help" ] ; then
-    echo "Enter the preferred number of loop iterations and namespace. Otherwise infinite loop will be run in default namespace."
-    exit
+      echo -e "Enter the preferred number of loop iterations and optionally the namespace of your target deployment.\nOtherwise infinite loop will be run in current namespace."
+      exit
   else
+    re='^[0-9]+$'
+    if ! [[ $1 =~ $re ]] ; then
+       echo "error: Not a number. Check help." >&2; exit 1
+    fi
     MAX_ITER=$1
     if [ $# -eq 2 ] ; then
       NAMESPACE=$2
+      ns=$(kubectl get namespaces | grep $NAMESPACE | awk '{print $1}')
+      if [[ $ns != $NAMESPACE ]] ; then
+          echo "error: Invalid namespace $NAMESPACE. Check help." >&2; exit 1
+      fi
+    elif [ $# -gt 2 ] ; then
+      echo "Too many parameters." >&2; exit 1
     fi
-    echo "Running $1 iterations in namespace $NAMESPACE"
+    echo "Running $MAX_ITER iterations in namespace $NAMESPACE."
   fi
 else
-  echo "Running infinite loop in namespace $NAMESPACE"
+  echo "Running infinite loop in namespace $NAMESPACE."
 fi
 
 iter=0
@@ -43,12 +53,11 @@ continue=true
 while $continue ; do
 
   iter=$((iter+1))
-#  echo "Iteration $iter"
 
-  # read amf_sessions form Prometheus - choose the version with appropriate namespace
-  amf_sessions="$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
-               'query=amf_session{service="open5gs-amf-metrics",namespace="$NAMESPACE"}' | \
-               jq '.data.result[0].value[1]' | tr -d '"')"
+  # read amf_sessions from Prometheus - choose the version with appropriate namespace
+  query="query=amf_session{service=\"open5gs-amf-metrics\",namespace=\"${NAMESPACE}\"}"
+  amf_sessions=$(curl -s 10.0.0.3:9090/api/v1/query -G -d \
+               $query | jq '.data.result[0].value[1]' | tr -d '"')
 
   # scale the resource
   cpu=$CPU0
@@ -67,16 +76,18 @@ while $continue ; do
     cpu=$CPU3
   fi
 
-  echo "Iteration $iter, amf_sessions $amf_sessions, scale resource to $cpu"
+  podname=$(kubectl get pods -n $NAMESPACE | grep open5gs-upf | awk '{print $1}')
 
-  kubectl patch pod open5gs-upf-7485fbd69c-hljfz --patch \
+  echo -e "\nIteration $iter, amf_sessions $amf_sessions, pod $podname, scaling resource to $cpu"
+
+  kubectl -n $NAMESPACE patch pod $podname --patch \
           "{\"spec\":{\"containers\":[{\"name\":\"open5gs-upf\", \"resources\":{\"limits\":{\"cpu\":\"$cpu\"}}}]}}"
 
   # SLEEP TIME ============
   if [ $iter != $MAX_ITER ]
   then
     sleeptime=$BASE_SCAN_TIME
-    echo "sleep $sleeptime sec."
+    echo "going asleep for $sleeptime sec."
     sleep $sleeptime
   else
     continue=false
@@ -84,4 +95,4 @@ while $continue ; do
 
 done
 
-echo "Exiting"
+echo -e "\nFinishing."
