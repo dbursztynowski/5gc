@@ -253,8 +253,11 @@ podSecurityContext:
 ##
 containerSecurityContext:
   enabled: true
-  runAsUser: 1001
-  runAsNonRoot: true
+##DB  runAsUser: 1001
+##DB  runAsNonRoot: true
+##DB allow root priviledges
+  allowPrivilegeEscalation: false
+  runAsUser: 0
 ## Configure extra options for startup probe
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
 ## @param startupProbe.enabled Enable startupProbe

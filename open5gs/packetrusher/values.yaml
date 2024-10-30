@@ -56,8 +56,8 @@ extraDeploy: []
 image:
   registry: docker.io
   repository: gradiant/packetrusher
-## DB  tag: "97f9f0c"
-  tag: "32a08fa"
+  tag: "97f9f0c"
+##DB newer  tag: "32a08fa"
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -89,7 +89,8 @@ config:
     tac: "000001"
     gnbid: "000008"
     sst: "01"
-    sd: "ffffff"
+##DB    sd: "ffffff"
+    sd: "0xffffff"
   ue:
     msin: "0000000001"
 ## DB    key: "491BB1C6E1179AED538028AE7AD525B3"
@@ -101,7 +102,8 @@ config:
       mcc: "999"
       mnc: "70"
     sst: "01"
-    sd: "ffffff"
+##DB    sd: "ffffff"
+    sd: "0xffffff"
 
 ## @param replicaCount Number of open5gs-upf Pods to run (requires ReadWriteMany PVC support)
 ##
@@ -220,7 +222,9 @@ affinity: {}
 ## @param nodeSelector Node labels for pod assignment. Evaluated as a template.
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
 ##
-nodeSelector: {}
+##nodeSelector: {}
+nodeSelector:
+  db.5gnet/nodeOS: ubuntu2004
 ## open5gs-upf container's resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ## @param resources.requests [object] The requested resources for the init container

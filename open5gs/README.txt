@@ -540,6 +540,9 @@ Packetrusher
 - Gradiant packetrusher
 https://gradiant.github.io/5g-charts/open5gs-packetrusher.html
 
+- check Chart.yaml at the end to verify the version (0.0.2 as of 2024.10.30)
+$ helm install packetrusher ./packetrusher --version 0.0.2
+
 - muli-ue mode
 https://github.com/HewlettPackard/PacketRusher/discussions/132
 
