@@ -74,7 +74,8 @@ image:
   pullSecrets: []
   ## Set to true if you would like to see extra information on logs
   ##
-  debug: false
+##DB  debug: false
+  debug: true
 
 config:
   amf:
@@ -90,7 +91,7 @@ config:
     gnbid: "000008"
     sst: "01"
 ##DB    sd: "ffffff"
-    sd: "0xffffff"
+##    sd: "0xffffff"
   ue:
     msin: "0000000001"
 ## DB    key: "491BB1C6E1179AED538028AE7AD525B3"
@@ -103,7 +104,7 @@ config:
       mnc: "70"
     sst: "01"
 ##DB    sd: "ffffff"
-    sd: "0xffffff"
+##    sd: "0xffffff"
 
 ## @param replicaCount Number of open5gs-upf Pods to run (requires ReadWriteMany PVC support)
 ##
