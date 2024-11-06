@@ -558,7 +558,7 @@ USING PROMETHEUS
 
 *************************************
 *************************************
-UE creation/deletion for UPF scaling
+QUICK GUIDE: ue creation/deletion for UPF scaling
 
 - first check current state (current # of UEs)
   NOTE: we adopt a rule that MSISDN of UEs start form the value 0000000001 and subsequent UEs get subsequent MSISDN numbers
@@ -582,4 +582,16 @@ $ helm delete ueransim-ues-additional
 - NOTE: if you suspect something goes wrong with UE registration, check amf logs:
 $ kubectl get pods  <= use appropriate namespace, 
 $ kubectl logs open5gs-amf-<amf-pod-suffix>
+
+- from the host (without entering the pod)
+  - create
+$ kubectl exec deployment/ueransim-gnb-ues -- /bin/bash -c "nr-ue -c ue.yaml -n 1 -i imsi-999700000000011"
+  - deregister (also deletes tun interface)
+> nr-cli imsi-999700000000011 --exec "deregister switch-off"
+$  kubectl exec deployment/ueransim-gnb-ues -- /bin/bash -c 'nr-cli imsi-999700000000004 --exec "deregister switch-off"'
+### Perform a de-registration by the UE
+### Usage:
+###   deregister <normal|disable-5g|switch-off|remove-sim>
+    more details on tahat: https://github.com/aligungr/UERANSIM/discussions/738#discussioncomment-11169926
+
 
