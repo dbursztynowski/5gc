@@ -559,6 +559,19 @@ USING PROMETHEUS
 *************************************
 *************************************
 QUICK GUIDE: ue creation/deletion for UPF scaling
+=====================================
+Handling the network
+
+- install
+$ helm install open5gs ./open5gs-225 --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
+$ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
+
+- loging to pods
+$ kubectl -n default exec -ti deployment/ueransim-gnb-ues -- /bin/bash
+
+=====================================
+
+Handling ues
 
 - first check current state (current # of UEs)
   NOTE: we adopt a rule that MSISDN of UEs start form the value 0000000001 and subsequent UEs get subsequent MSISDN numbers
