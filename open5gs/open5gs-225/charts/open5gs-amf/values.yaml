@@ -245,23 +245,16 @@ resources:
 podSecurityContext:
   enabled: true
   fsGroup: 1001
-##
 ## Configure Container Security Context (only main container)
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
 ## @param containerSecurityContext.enabled Enable open5gs-amf containers' Security Context
 ## @param containerSecurityContext.runAsUser open5gs-amf containers' Security Context
 ## @param containerSecurityContext.runAsNonRoot Set Controller container's Security Context runAsNonRoot
 ##
-## original
 containerSecurityContext:
   enabled: true
   runAsUser: 1001
   runAsNonRoot: true
-##DB+ ===== allow root priviledges
-##DB+containerSecurityContext:
-##DB+  allowPrivilegeEscalation: false
-##DB+  runAsUser: 0
-##
 ## Configure extra options for startup probe
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
 ## @param startupProbe.enabled Enable startupProbe

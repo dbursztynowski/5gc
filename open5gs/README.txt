@@ -261,6 +261,8 @@ ues:
 #------------------------------
   - *** actual install
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
+  from local files:
+  helm install ueransim-gnb ueransim-gnb-0.2.6/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 ---------
 # now check the connectivity (see below)
@@ -570,7 +572,10 @@ Handling the network
 
 - install
 $ helm install open5gs ./open5gs-225 --version 2.2.5 --values ./5gSA-values-enable-metrics.yaml
+
 $ helm install ueransim-gnb oci://registry-1.docker.io/gradiant/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
+  from local files:
+  helm install ueransim-gnb ueransim-gnb-0.2.6/ueransim-gnb --version 0.2.6 --values ./gnb-ues-values.yaml
 
 - loging to pods
 $ kubectl -n default exec -ti deployment/ueransim-gnb-ues -- /bin/bash
