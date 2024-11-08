@@ -557,6 +557,12 @@ USING PROMETHEUS
              curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | jq
 
 *************************************
+siege - http traffic genrator
+use in kubernetes: https://cloudyuga.guru/blogs/how-to-tcpdump-in-kubernetes/
+parameters: https://linux.die.net/man/1/siege
+original: https://github.com/JoeDog/siege
+
+*************************************
 *************************************
 QUICK GUIDE: ue creation/deletion for UPF scaling
 
@@ -594,4 +600,6 @@ $  kubectl exec deployment/ueransim-gnb-ues -- /bin/bash -c 'nr-cli imsi-9997000
 ###   deregister <normal|disable-5g|switch-off|remove-sim>
     more details on tahat: https://github.com/aligungr/UERANSIM/discussions/738#discussioncomment-11169926
 
-
+================
+- How to tcpdump in kubernetes
+https://cloudyuga.guru/blogs/how-to-tcpdump-in-kubernetes/

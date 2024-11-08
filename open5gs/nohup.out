@@ -105,3 +105,46 @@ UERANSIM v3.2.6
 [2024-11-06 17:11:02.097] [nas] [debug] PDU Session Establishment Accept received
 [2024-11-06 17:11:02.097] [nas] [info] PDU Session establishment is successful PSI[1]
 [2024-11-06 17:11:02.123] [app] [info] Connection setup for PDU session[1] is successful, TUN interface[uesimtun9, 10.45.0.15] is up.
+[2024-11-06 17:28:16.740] [nas] [debug] De-registration required due to [USIM-REMOVAL]
+[2024-11-06 17:28:16.750] [nas] [debug] Starting de-registration procedure due to [USIM-REMOVAL]
+[2024-11-06 17:28:16.751] [nas] [debug] Performing local release of PDU session[1]
+[2024-11-06 17:28:16.751] [nas] [info] UE switches to state [MM-DEREGISTER-INITIATED]
+[2024-11-06 17:28:16.751] [nas] [info] UE switches to state [MM-DEREGISTERED/PS]
+[2024-11-06 17:28:16.751] [nas] [info] SIM card has been invalidated
+[2024-11-06 17:28:16.751] [nas] [info] UE switches to state [MM-DEREGISTERED/NO-SUPI]
+[2024-11-06 17:28:16.775] [rrc] [debug] RRC Release received
+[2024-11-06 17:28:16.775] [nas] [info] UE switches to state [CM-IDLE]
+[2024-11-06 17:31:23.684] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:31:23.694] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:31:54.124] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:31:54.134] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:32:14.974] [nas] [debug] De-registration required due to [USIM-REMOVAL]
+[2024-11-06 17:32:14.986] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:33:18.693] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:33:18.703] [nas] [debug] Starting de-registration procedure due to [SWITCH-OFF]
+[2024-11-06 17:33:18.703] [nas] [debug] Performing local release of PDU session[1]
+[2024-11-06 17:33:18.703] [nas] [info] UE switches to state [MM-DEREGISTER-INITIATED]
+[2024-11-06 17:33:18.748] [rrc] [debug] RRC Release received
+[2024-11-06 17:33:18.748] [nas] [info] UE switches to state [CM-IDLE]
+[2024-11-06 17:33:19.227] [app] [info] UE device is switching off
+[2024-11-06 17:33:36.971] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:33:36.981] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:34:46.529] [nas] [debug] De-registration required due to [USIM-REMOVAL]
+[2024-11-06 17:34:46.540] [nas] [debug] Starting de-registration procedure due to [USIM-REMOVAL]
+[2024-11-06 17:34:46.540] [nas] [debug] Performing local release of PDU session[1]
+[2024-11-06 17:34:46.540] [nas] [info] UE switches to state [MM-DEREGISTER-INITIATED]
+[2024-11-06 17:34:46.540] [nas] [info] UE switches to state [MM-DEREGISTERED/PS]
+[2024-11-06 17:34:46.540] [nas] [info] SIM card has been invalidated
+[2024-11-06 17:34:46.540] [nas] [info] UE switches to state [MM-DEREGISTERED/NO-SUPI]
+[2024-11-06 17:34:46.598] [rrc] [debug] RRC Release received
+[2024-11-06 17:34:46.600] [nas] [info] UE switches to state [CM-IDLE]
+[2024-11-06 17:41:15.902] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:41:15.914] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:42:16.124] [nas] [debug] De-registration required due to [SWITCH-OFF]
+[2024-11-06 17:42:16.134] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:46:55.643] [nas] [debug] De-registration required due to [USIM-REMOVAL]
+[2024-11-06 17:46:55.653] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+[2024-11-06 17:47:42.315] [nas] [debug] De-registration required due to [DISABLE-5G]
+[2024-11-06 17:47:42.325] [nas] [warning] De-registration could not be triggered. UE is already de-registered
+command terminated with exit code 137
+command terminated with exit code 137
