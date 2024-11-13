@@ -559,7 +559,7 @@ USING PROMETHEUS
              curl 10.254.186.64:9090/api/v1/query -G -d 'query=amf_session{service="open5gs-amf-metrics",namespace="default"}' | jq
 
 *************************************
-siege - http traffic genrator
+siege - http traffic generator
 use in kubernetes: https://cloudyuga.guru/blogs/how-to-tcpdump-in-kubernetes/
 parameters: https://linux.die.net/man/1/siege
 original: https://github.com/JoeDog/siege
