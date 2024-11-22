@@ -24,7 +24,7 @@ image:
      registry: docker.io
      repository: bitnami/mongodb
      tag: 4.4.15-debian-10-r8
-# <== end pf "change mongodb image"
+# <== end of "change mongodb image"
 
 ===========================================
 OPEN5GS
