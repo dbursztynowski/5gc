@@ -52,7 +52,7 @@ populate:
 $
 
 ---------------
-NOTE: to enabler metrics, above file should be updated as below:
+NOTE: to enable metrics, above file should be updated as below:
 
 $ cat 5gSA-values-enable-metrics.yaml
 hss:
