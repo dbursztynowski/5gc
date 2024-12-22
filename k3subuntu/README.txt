@@ -11,7 +11,7 @@ if OpenStack (optional)
   - insert the following into Configuration/Customization script pane in OpenStack Dashboard
     ubuntu is the default user on Ubuntu 
 #cloud-config
-password: t6ygfr5
+password: ubuntu
 chpasswd: { expire: False }
 ssh_pwauth: True
 
