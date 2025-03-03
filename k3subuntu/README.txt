@@ -66,6 +66,8 @@ $ sudo service ssh restart
 *****************************************
 INSTALL KUBERNETES
 
+Below, we show two options. The first one is dedicated to Calico CNI. The second one (line 166) refers to flannel CNI.
+
 ******************************
 INSTALL KUBERNETES FOR CALICO
 
