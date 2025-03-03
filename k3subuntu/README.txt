@@ -57,7 +57,7 @@ $ sudo apt upgrade
 
 $ sudo apt install git
 
-- for any case (e.g. scp copy) enable PasswordAuthentication
+- for any case (e.g. scp copy) checkt this - enable PasswordAuthentication
 $ sudo nano /etc/ssh/sshd_config
   PasswordAuthentication yes
 $ sudo service ssh restart
