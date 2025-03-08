@@ -215,10 +215,18 @@ $ /usr/local/bin/k3s-agent-uninstall.sh
 ********************************
 ********************************
 HELM
-- install helm
+- install helm on the management node
 $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 $ chmod 700 get_helm.sh
 $ ./get_helm.sh
+
+********************************
+********************************
+Install kubectl
+- using binaries
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+https://greenwebpage.com/community/how-to-install-kubectl-on-ubuntu-24-04/#Method-3:-Installing-Kubectl-on-Ubuntu-24.04-Using-Kubectl-Binary-File
+
 
 ********************************
 
