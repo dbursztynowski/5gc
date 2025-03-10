@@ -5,6 +5,7 @@ For k8s cluster on multinode see, e.g., https://phoenixnap.com/kb/install-kubern
 *****************************************
 PREPARE UBUNTU 22.04
 
+=========================================
 if OpenStack (optional)
 =========================================
 - to lunch instance from image with password authentication enabled (here pwd=ubuntu)
@@ -17,6 +18,15 @@ ssh_pwauth: True
 
 - more on this: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init#setting_up_cloud_init
 
+- add a rule(s) to a security group assigned to your OpenStack servers accepting all desired traffic
+  (in a non-production environment one can allow all traffic setting the following arguments of the rule:
+   Rule: other protocol
+   IP protocol: -1
+   Remote: CIDR
+   CIDR: 0.0.0.0/0
+  )
+
+=========================================
 for VirtualBox only
 =========================================
 - enable terminal
