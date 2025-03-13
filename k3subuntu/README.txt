@@ -87,6 +87,8 @@ https://www.digitalocean.com/community/tutorials/how-to-setup-k3s-kubernetes-clu
 (multinode k3s with Calico) https://docs.tigera.io/calico/latest/getting-started/kubernetes/k3s/multi-node-install
 
 - simplest (no calico, etc.)
+  curl ... sh --     <=== run output of the pipe in shell; terminating "-" (equivalent to --) stops the option part, start arguments,
+    here it is unnecessary (no arguments are present) but we use it after the original K3s documentation
 # $ curl -sfL https://get.k3s.io  | INSTALL_K3S_EXEC="--kube-apiserver-arg=feature-gates=InPlacePodVerticalScaling=true" sh -
 
 ---
