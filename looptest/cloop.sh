@@ -80,8 +80,37 @@ while $continue ; do
 
   echo -e "\nIteration $iter, amf_sessions $amf_sessions, pod $podname, scaling resource to $cpu"
 
-  kubectl -n $NAMESPACE patch pod $podname --patch \
-          "{\"spec\":{\"containers\":[{\"name\":\"open5gs-upf\", \"resources\":{\"limits\":{\"cpu\":\"$cpu\"}}}]}}"
+  ## old version of patching
+#  kubectl -n $NAMESPACE patch pod $podname --patch \
+#          "{\"spec\":{\"containers\":[{\"name\":\"open5gs-upf\", \"resources\":{\"limits\":{\"cpu\":\"$cpu\"}}}]}}"
+
+  kubectl -n $NAMESPACE patch pod $podname --subresource resize --patch \
+          "{\"spec\": \
+              {\"containers\": \
+                 [ \
+                    {\"name\":\"open5gs-upf\", \"resources\": \
+                        { \
+                           \"requests\":{\"cpu\":\"50m\"}, \
+                           \"limits\"  :{\"cpu\":\"$cpu\"} \
+                        } \
+                    } \
+                 ] \
+              } \
+           }"
+
+  ## or simpler form, equivalent to the old one (only limits is explicitly scaled)
+#  kubectl -n $NAMESPACE patch pod $podname --subresource resize --patch \
+#          "{\"spec\": \
+#              {\"containers\": \
+#                 [ \
+#                    {\"name\":\"open5gs-upf\", \"resources\": \
+#                        { \
+#                           \"limits\"  :{\"cpu\":\"$cpu\"} \
+#                        } \
+#                    } \
+#                 ] \
+#              } \
+#           }"
 
   # SLEEP TIME ============
   if [ $iter != $MAX_ITER ]
