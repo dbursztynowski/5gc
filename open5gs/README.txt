@@ -616,7 +616,7 @@ $  kubectl exec deployment/ueransim-gnb-ues -- /bin/bash -c 'nr-cli imsi-9997000
 ### Perform a de-registration by the UE
 ### Usage:
 ###   deregister <normal|disable-5g|switch-off|remove-sim>
-    more details on tahat: https://github.com/aligungr/UERANSIM/discussions/738#discussioncomment-11169926
+    more details on that: https://github.com/aligungr/UERANSIM/discussions/738#discussioncomment-11169926
 
 ================
 - How to tcpdump in kubernetes
